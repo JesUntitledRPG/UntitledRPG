@@ -6,7 +6,8 @@ This is the main version right now. It'll be patched with your security patches,
 
 | Version       | Supported          |
 | ------------- | ------------------ |
-| 0.2.xprealpha | :white_check_mark: |
+| 0.3.xprealpha | :white_check_mark: |
+| 0.2.xprealpha | ❌ |
 
 ## Reporting a Vulnerability
 
