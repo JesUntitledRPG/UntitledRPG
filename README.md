@@ -5,8 +5,7 @@ Version archiving: so you can laugh at me like a maniac.
 # Can I use this commercially?
 I won't allow it, but considering how messy my code is, you wouldn't want to do it EVEN if I allowed it.
 # What version is the game currently at?
-Well, it's version 0.2.2 pre-alpha. Still working with text, learning more about Python, you get the deal.
-0.3.0 will add saves, armour and weapons, plus a new enemy, and in 0.4.0 I'll try to improve the combat.
+0.3.0 pre-alpha. 0.4.0'll add new enemies, and IF I MANAGE TO, new combat mechanics.
 # So this is a sloppily coded, unfun, made by a random guy who still doesn't know what a pointer is, role playing game.
 Yep.
 # When is it going to be done?
