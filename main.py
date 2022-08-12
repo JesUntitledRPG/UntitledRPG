@@ -19,16 +19,16 @@ inv = ["HealPot", "HealPot", "HealPot", "EffectClear"]
 stats = ["none"]
 enemyhp = 250
 inftimer = 0  # this is the effect timer for INFECTED. i dunno how to make better code so ¯\_(ツ)_/¯
-conftimer = 0  #inftimer but for CONFUSED
-zzzztimer = 0 #conftimer but for ASLEEP
-drowtimer = 0 #zzzztimer but for DROWSY
+conftimer = 0  # inftimer but for CONFUSED
+zzzztimer = 0 # conftimer but for ASLEEP
+drowtimer = 0 # zzzztimer but for DROWSY
 battleexit = 0  # affects shopkeep dialogue, prices, etc...
 weap = "fists"  # currently these two things do nothing. they'll affect other things later!|
 armr = "clothing"  # <--same as the last comment thingy|
 gameround = 0  # round is APARENTLY a python function so I can't declare that
 accuracy = 100  # this is primarily for the Drowsy status effect
 enemy = "it's random, my dudes" # this is mainly so PyCharm shuts up about enemies being able to be undeclared
-version = "0.3prealpha" # used for saves
+version = "0.3.1prealpha" # used for saves
 versiondiff = False
 # the reason this is now here is to make my life easier in case I add some new thing. also this is good practice
 # buglog:
@@ -269,7 +269,7 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
             print("The", enemy, "generically attacks you for", enemyatk, "HP!")
             hp = hp - enemyatk
             if enemy == "Wizard":
-                enemyatk / 2
+                enemyatk = enemyatk / 2
                 print("The Wizard's spell also hurts you from the inside... Lost", enemyatk ,"HP.")
                 hp = hp - enemyatk
         elif enemyatk == 10 and enemy == "Zombie":
@@ -384,14 +384,18 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
             elif gold <= 0:
                 print("with your labor. You work for her, as you have NO money, and get back to the storefront, to prepare and leave.")
                 hp = hpmax
+        if battleexit == 3 and versiondiff == 1:
+            print("Resolving version differences...")
+            #note to self: there are none right now, so i'm just stalling for time
+            time.sleep(3)
+            print("Data loaded and prepared for this version.")
         if battleexit == 3:
             print("Data loaded.")
         while True:
             save = input("Do you want to save? yes/no").lower()
             if save == "yes":
                 print("Game saved.")
-                savesure == save
-                if savesure == "yes":  # oh boy this is hell why did i implement this (note to self: you implemented this because it's needed for the game to be beatable in multiple sessions if you go through with this game)
+                if save == "yes":  # oh boy this is hell why did i implement this (note to self: you implemented this because it's needed for the game to be beatable in multiple sessions if you go through with this game)
                     python_file = open("save.sav", "r+")
                     hp = int(hp)
                     hpmax = int(hpmax)
