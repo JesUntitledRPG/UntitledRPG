@@ -22,13 +22,16 @@ inftimer = 0  # this is the effect timer for INFECTED. i dunno how to make bette
 conftimer = 0  # inftimer but for CONFUSED
 zzzztimer = 0 # conftimer but for ASLEEP
 drowtimer = 0 # zzzztimer but for DROWSY
+charmtimer = 0 # you get the deal. i'll explain the effects here now. this effect makes it so your attack heals the mermaid.
+sadtimer = 0 # and this causes you to attack weaker and heal less.
 battleexit = 0  # affects shopkeep dialogue, prices, etc...
 weap = "fists"  # currently these two things do nothing. they'll affect other things later!|
 armr = "clothing"  # <--same as the last comment thingy|
 gameround = 0  # round is APARENTLY a python function so I can't declare that
 accuracy = 100  # this is primarily for the Drowsy status effect
 enemy = "it's random, my dudes" # this is mainly so PyCharm shuts up about enemies being able to be undeclared
-version = "0.3.1prealpha" # used for saves
+version = "0.4.0prealpha" # used for saves
+badge = "none"
 versiondiff = False
 # the reason this is now here is to make my life easier in case I add some new thing. also this is good practice
 # buglog:
@@ -62,11 +65,16 @@ while True:
         inv = invload
         #string time
         if version != strings[0]:
-            print("Woah, hey there. We're gonna need to do some conversion. The Shopkeeper will handle it.")
+            print("Woah, hey there. We're gonna need to do some conversion.")
             versiondiff = True
+            if strings[0] == "0.3.1prealpha" or strings[0] == "0.3prealpha":
+                badge = "none"
+                badgereadd = True
         char = strings[1]
         weap = strings[2]
         armr = strings[3]
+        if badgereadd != True:
+            badge = strings[4]
         #oh boy it's time to truly whip out the SPAGHETTI CODIFICATION
         #stackoverflow, thanks guys.
         numbers = [int(item) for item in numbers]
@@ -100,30 +108,38 @@ print("Made by Jes")
 time.sleep(1)
 print("Probably a mess right now")
 time.sleep(2)
-# this is all going in the save files and you know it (well aight except enemyhp, enemytype, and inf/conf/drow/sleeptimers)
-if battleexit == 3:
-    amogus = 1
-else:
-    amogus = 1
+# this is all going in the save files and you know it (well aight except enemyhp, enemy, and inf/conf/drow/sleep/charm/sadtimers)
 while True:  # man this relies on a lot of loops. main.py is going to be overloaded
     print("BATTLE Time!")
-    if gameround == 0:
-        randomenemy = 1
-    elif gameround > 0:
-        randomenemy = random.randint(1, 3)
+    if gameround > 0:
+        randomenemy = random.randint(1, 4)
     if randomenemy == 1:
         enemy = "Zombie"
     elif randomenemy == 2:
         enemy = "Ghost"
     elif randomenemy == 3:
         enemy = "Wizard"
+    elif randomenemy == 4:
+        enemy = "Mermaid"
+    if gameround%5 == 0:
+        enemy == "Swordsman"
+    if gameround == 0:
+        randomenemy = 1
     if enemy == "Zombie":
         enemyhp = 250
     elif enemy == "Ghost":
         enemyhp = 300
     elif enemy == "Wizard":
         enemyhp = 350
-    print("You are battling against a", enemy, "a line of text says.")
+    elif enemy == "Mermaid":
+        enemyhp = 400
+    elif enemy == "Swordsman":
+        enemyhp = 600
+        randomenemy = 5
+    if randomenemy < 5:
+        print("You are battling against a", enemy, "a line of text says.")
+    else:
+        print("You are fighting against the Effectless Swordsman, another line of text says. It's boss time.")
     while True:
         atk = random.randint(10, 50)
         if weap == "Sword":
@@ -162,6 +178,20 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
             gameround = gameround + 1
             battleexit = 1
             break
+        if enemyhp <= 0 and enemy == "Mermaid":
+            randgold = random.randint(60,200)  # mermaids are around the same difficulty as wizards but you need loads of effectclears
+            print("You win the battle!\nYou get", randgold, "Gold!")
+            gold = gold + randgold
+            gameround = gameround + 1
+            battleexit = 1
+            break
+        if enemyhp <= 0 and enemy == "Swordsman":
+            randgold = random.randint(100,300)  # you only find these every 5 rounds
+            print("You defeated the miniboss!\nYou get", randgold, "Gold!")
+            gold = gold + randgold
+            gameround = gameround + 1
+            battleexit = 1
+            break
         action = input("What will you do? (attack, items, defend)").lower()
         if action == "items":
             while True:
@@ -193,6 +223,8 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
                         inv.remove("HealPot")
                         print("You drink the Health Potion. HP + 30.")
                         hp = hp + 30
+                        if hp > hpmax:
+                            hp = hpmax
                         time.sleep(2)
                         break
                     elif itemhave <= 0:
@@ -211,6 +243,18 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
             if missrange > accuracy:
                 print("You missed...")
             else:
+                if charmtimer > 1:
+                    print("You try to attack, but are charmed by the Mermaid's look on her face...")
+                    atk = atk / 2
+                    if weap == "fists":
+                        print("The mermaid forces you to heal her for", atk ,"HP!")
+                        enemyhp = enemyhp + atk
+                    else:
+                        print("The mermaid tries to make you heal her, but her spell is cut short by you dropping your", weap + ".")
+                        time.sleep(1)
+                        atk = atk / 2
+                        print("However, you still healed her", atk ,"HP.")
+                        enemyhp = enemyhp + atk
                 if atk > 40:
                     enemyhp = enemyhp - atk
                     print("CRIT! You deal", atk, "damage to the", enemy ,".")
@@ -257,14 +301,39 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
             drowtimer = drowtimer - 1
         elif drowtimer == 1:
             print("You fully restore your energy. You gain 5 HP, too.")
+            stats.remove("Drowsy")
             hp = hp + 5
+            if hp > hpmax:
+                hp = hpmax
             accuracy = 100
             drowtimer = drowtimer - 1
             zzzztimer = 0
+        elif charmtimer > 1:
+            print("You're still hypnotized by the Mermaid's singing...")
+            charmtimer = charmtimer - 1
+        elif charmtimer == 1:
+            print("You break out of the mermaid's spell!")
+            stats.remove("Charmed")
+            charmtimer = charmtimer - 1
+        elif sadtimer > 1:
+            print("You're still saddened by the song...")
+            sadtimer = sadtimer - 1
+        elif sadtimer == 1:
+            print("You finally recover from your sadness.")
+            stats.remove("Depressed")
+            sadtimer = sadtimer - 1
         time.sleep(1)
         enemyatk = random.randint(1, 10)
         if action == "defend":
             enemyatk = enemyatk / 2
+        if badge == "BottleCap":
+            enemyatk = enemyatk - 1
+        if armr == "Leather":
+            enemyatk = enemyatk - 3
+        if enemy == "Swordsman":
+            print("The Swordsman hits you for", enemyatk*2, "damage!")
+            enemyatk = enemyatk*2
+            hp = hp - enemyatk
         if enemyatk < 10 or enemyatk > 10:
             print("The", enemy, "generically attacks you for", enemyatk, "HP!")
             hp = hp - enemyatk
@@ -326,12 +395,32 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
                 stats.append("Drowsy")
                 drowtimer = 3
                 zzzztimer = zzzztimer + 1
-                print(zzzztimer)
             else:
                 drowtimer = 3
                 zzzztimer = zzzztimer + 1
-                print(zzzztimer)
             time.sleep(1)
+        elif enemyatk < 8 and enemyatk > 6 and enemy == "Mermaid":
+            enemyatk = enemyatk / 4
+            print("The mermaid sings a hypnotizing song...\nGot charmed for 3 turns. You also lost", enemyatk, "HP, since the spell broke your brain.")
+            hp = hp - enemyatk
+            none = stats.count("none")
+            if none == 1:
+                stats.pop(0)
+                stats.append("Charmed")
+                charmtimer = 3
+            else:
+                charmtimer = 3
+        elif enemyatk < 4 and enemyatk > 2 and enemy == "Mermaid":
+            enemyatk = enemyatk * 2
+            print("The mermaid sings a sad song...\nGot depressed for 3 turns. You also lost", enemyatk, "HP, since the song lowered your morale.")
+            hp = hp - enemyatk
+            none = stats.count("none")
+            if none == 1:
+                stats.pop(0)
+                stats.append("Depressed")
+                sadtimer = 3
+            else:
+                sadtimer = 3
         if hp <= 0 and revives <= 0:
             print("You lost...")  # secondary check so you can't double-down on deaths
             battleexit = 0
@@ -346,13 +435,14 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
         print("HP:", hp, "\n", enemy, "HP:", enemyhp)
     # shopscript
     # shopkeep is actually a really nice person tho, but how does she get all of those coins?
-    shopinv = ["HealPot", "EffectClear", "MaxUp", "AlarmClock", "Armor", "Weapons"]
+    shopinv = ["HealPot", "EffectClear", "MaxUp", "AlarmClock", "Armor", "Weapons","Badge"]
     stock = 6
     stock2 = 6
     stock3 = 1
     stock4 = 1
     currentweap = "sword"
     currentarmr = "leather"
+    currentbadge = "bottlecap"
     print("All status effects cleared.")
     time.sleep(3)
     inftimer = 0  # this is the effect timer for INFECTED. i dunno how to make better code so ¯\_(ツ)_/¯
@@ -420,6 +510,9 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
                     python_file.write("\n")
                     python_file.write(saveline3)
                     python_file.close()
+                    print("Saved succesfully. Hopefully.")
+                else:
+                    print("Saving cancelled.")
                 break
             else:
                 break
@@ -430,6 +523,8 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
                 print("The Shopkeeper also gives you a band-aid, so you can recover some health.")
                 regenhp = random.randint(20, 30)
                 print("Recovered", regenhp, "HP.")
+                if hp > hpmax:
+                    hp = hpmax
                 battleexit = 4
                 break
             elif shopbuy == "exit" and battleexit == 0:
@@ -499,13 +594,21 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
                 print("They'll be quite expensive later on, so I'll let you have them for 100 gold.")
                 if gold >= 100:
                     surebuy = input("Do you want to buy the Armor and Sword bundle?").lower()
-                elif surebuy == "yes":
+                if surebuy == "yes":
                     gold = gold - 100
                     weap = "sword"
                     armr = "leather"
                     print("Alright! Thanks for the cash, now here's your stuff. They'll protect you.")
                     time.sleep(3)
                     print("Got the Armor and Sword set!")
+            elif shopbuy == "badge":
+                print("This is just a Bottle Cap that increases your defense by 10...(equals to 1dmg)")
+                if gold >= 10:
+                    surebuy = input("Do you want to buy the BottleCap for 10 gold?")
+                if surebuy == "yes":
+                    badge = "BottleCap"
+                    print("Got the BottleCap Badge.")
+                    time.sleep(2)
             elif shopbuy == "restocktest":
                 stock = 6
                 stock2 = 6
@@ -514,16 +617,15 @@ while True:  # man this relies on a lot of loops. main.py is going to be overloa
                 gold = gold * 2
                 print("A celestial light shines upon the store...\nRestocked items and duplicated gold!")
             elif shopbuy == "save":
-                print("HOLD UP! This feature isn't guaranteed to work, but you can still try it...")
-                savesure = input("DO YOU WANT TO SAVE? yes/no").lower()
-                if savesure == "yes": #oh boy this is hell why did i implement this (note to self: you implemented this because it's needed for the game to be beatable in multiple sessions if you go through with this game)
+                save = input("Do you want to save? yes/no").lower()
+                if save == "yes": #oh boy this is hell why did i implement this (note to self: you implemented this because it's needed for the game to be beatable in multiple sessions if you go through with this game)
                     python_file = open("save.sav", "r+")
                     hp = int(hp)
                     hpmax = int(hpmax)
                     gold = int(gold)
                     gameround = int(gameround)
                     #all of this because of an error. bruh
-                    strings = [version,",",char,",",weap,",",armr]
+                    strings = [version,",",char,",",weap,",",armr,",",badge]
                     variables = [hp,",",hpmax,",",gold,",",gameround]
                     saveinv = []
                     for element in inv:
