@@ -1,12 +1,18 @@
-# UntitledRPG
-The Untitled RPG Game that nobody cares about
-# What's this repo for?
-Version archiving: so you can laugh at me like a maniac.
-# Can I use this commercially?
-I won't allow it, but considering how messy my code is, you wouldn't want to do it EVEN if I allowed it.
-# What version is the game currently at?
-0.5.0 pre-alpha. Version 0.5.1 will add classes and the promised combat mechanics from 0.4.0.
-# So this is a sloppily coded, unfun, made by a random guy who still doesn't know what a pointer is, role playing game.
-Yep.
-# When will it be done?
-IT'LL BE DONE WHEN IT'S **DONE.**
+![Logo](https://github.com/JesUntitledRPG/UntitledRPG/raw/main/github.png)
+# Untitled RPG Game
+The RPG Game that nobody cares about
+
+## What is this repo for?
+Archival: so people can get old versions of this mess. And laugh at me because, oh boy, this codebase is a MESS.
+
+## What version are you at?
+0.5.0 Prealpha. Working on a patch to bring in the features I promised.
+
+## How... messy is this codebase?
+Believe me, you don't wanna even TOUCH this. I had no idea what a class even WAS when I started coding this. And I still have a long way to go...
+
+## If you ever fix the codebase, can I use it commercially?
+Apache License. Yes. Just don't upload the whole game and call it your own.
+
+## When will it be done?
+Quoting myself here: IT WILL BE DONE WHEN IT'S **DONE**. No more, no less.
