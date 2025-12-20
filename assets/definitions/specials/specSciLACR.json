@@ -1,0 +1,17 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Science Equipment",
+    "mult":3,
+    "animation":"$DEFAULT",
+    "effects":{
+        "confused":[5,1],
+        "burning":[30,1],
+        "$WeaponSpecific":[30,1]
+    },
+    "name":"Light Amplification by Chemical Reaction",
+    "description":"Chemical laser. How does it work? I dunno. But it does.",
+    "img":"assets/definitions/specials/imgs/spec0027.png"
+}

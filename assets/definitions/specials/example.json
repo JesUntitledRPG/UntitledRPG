@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":1,
+    "targets":1,
+    "party":"enemy",
+    "combo":"combo here",
+    "mult":1,
+    "animation":"$DEFAULT",
+    "effects":{
+        "confused":[30,1]
+    },
+    "name":"example",
+    "description":"no joaquin no puedes ponerte de referencia",
+    "img":"assets/definitions/specials/imgs/example.png"
+}

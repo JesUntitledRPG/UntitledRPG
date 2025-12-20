@@ -1,0 +1,61 @@
+{
+    "type":"URPGEnemy",
+    "filepath":"assets/battle/enemies/main/",
+    "name":"Zombie",
+    "kind":"standard",
+    "icon":"assets/hpicon_zombie.png",
+    "animations":{
+        "PTBIdle":"assets/urpg-zombie.png"
+    },
+    "hp":250,
+    "def":0,
+    "gold":[7,13],
+    "moves":{
+        "punch":{
+            "dmg":[10,30],
+            "weight":80,
+            "target":"single",
+            "timings":{
+                "atk":1500,
+                "block":[1300,1800],
+                "counter":[1433,1870]
+            }
+        },
+        "bite":{
+            "dmg":[15,40],
+            "effect":"infected",
+            "chance":0.9,
+            "weight":20,
+            "target":"single",
+            "timings":{
+                "atk":700,
+                "block":[530,1090],
+                "counter":[630,1060]
+            }
+        }
+    },
+    "translations":{
+        "EN":{
+            "name":"Zombie",
+            "punch":{
+                "name":"Punch",
+                "text":"The Zombie punches [AFNAME]!"
+            },
+            "bite":{
+                "name":"Bite",
+                "text":"The Zombie bites [AFNAME]!"
+            }
+        },
+        "ES":{
+            "name":"Zombí",
+            "punch":{
+                "name":"Puñetazo",
+                "text":"¡El Zombí le pega un puñetazo a [AFNAME]!"
+            },
+            "bite":{
+                "name":"Mordisco",
+                "text":"¡El Zombí le muerde a [AFNAME]!"
+            }
+        }
+    }
+}

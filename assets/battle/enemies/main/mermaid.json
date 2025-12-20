@@ -1,0 +1,81 @@
+{
+    "type":"URPGEnemy",
+    "filepath":"assets/battle/enemies/main/",
+    "name":"Mermaid",
+    "kind":"standard",
+    "icon":"assets/hpicon_mermaid.png",
+    "animations":{
+        "PTBIdle":"assets/urpg-mermaid.png"
+    },
+    "hp":400,
+    "def":0.5,
+    "gold":[15,30],
+    "moves":{
+        "punch":{
+            "dmg":[10,30],
+            "weight":60,
+            "target":"single",
+            "timings":{
+                "atk":1500,
+                "block":[1300,1800],
+                "counter":[1433,1670]
+            }
+        },
+        "charm":{
+            "dmg":[0,0],
+            "effect":"charmed",
+            "chance":0.9,
+            "weight":20,
+            "target":"single",
+            "timings":{
+                "atk":850,
+                "block":[-1,-1],
+                "counter":[-1,-1]
+            }
+        },
+        "sad":{
+            "dmg":[0,0],
+            "effect":"sad",
+            "chance":0.9,
+            "weight":20,
+            "target":"single",
+            "timings":{
+                "atk":850,
+                "block":[-1,-1],
+                "counter":[-1,-1]
+            }
+        }
+    },
+    "translations":{
+        "EN":{
+            "name":"Mermaid",
+            "punch":{
+                "name":"Punch",
+                "text":"The Mermaid punches [AFNAME]!"
+            },
+            "charm":{
+                "name":"On First Sight",
+                "text":"The Mermaid tries to charm [AFNAME]..."
+            },
+            "sad":{
+                "name":"Activated Waterworks",
+                "text":"The Mermaid tries to sadden [AFNAME]..."
+            }
+        },
+        "ES":{
+            "name":"Sirena",
+            "punch":{
+                "name":"Puñetazo",
+                "text":"¡La Sirena le pega un puñetazo a [AFNAME]!"
+            },
+            "charm":{
+                "name":"A primera vista",
+                "text":"La Sirena trata de enamorar a [AFNAME]..."
+            },
+            "sad":{
+                "name":"Lágrimas de cocodrilo",
+                "text":"La Sirena trata de entristecer a [AFNAME]..."
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+kLeft:K_LEFT,K_a
+kRight:K_RIGHT,K_d
+kUp:K_UP,K_w
+kDown:K_DOWN,K_s
+kAccept:K_SPACE,K_RETURN,K_z
+kDeny:K_ESCAPE,K_BACKSPACE,K_x

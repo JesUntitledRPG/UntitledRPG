@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":1,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Science Equipment",
+    "mult":1,
+    "animation":"$DEFAULT",
+    "effects":{
+        "weakness":[100,1]
+    },
+    "name":"Neutralizer",
+    "description":"Makes enemies weaker.",
+    "img":"assets/definitions/specials/imgs/spec0029.png"
+}

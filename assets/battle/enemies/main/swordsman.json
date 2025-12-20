@@ -1,0 +1,98 @@
+{
+    "type":"URPGEnemy",
+    "filepath":"assets/battle/enemies/main/",
+    "name":"Swordsman",
+    "kind":"boss",
+    "icon":"assets/hpicon_swordsman.png",
+    "animations":{
+        "PTBIdle":"assets/urpg-swordsman.png"
+    },
+    "hp":750,
+    "def":1.5,
+    "gold":[95,215],
+    "moves":{
+        "slash":{
+            "dmg":[35,55],
+            "effect":"bleeding",
+            "chance":0.35,
+            "weight":50,
+            "target":"multi3",
+            "timings":{
+                "atk":750,
+                "block":[670,1070],
+                "counter":[720,970]
+            },
+            "extra":"self.lifesteal += self.damage"
+        },
+        "stab":{
+            "dmg":[60,85],
+            "effect":"bleeding",
+            "chance":0.7,
+            "weight":30,
+            "target":"single",
+            "timings":{
+                "atk":900,
+                "block":[820,1265],
+                "counter":[850,1095]
+            },
+            "extra":"self.lifesteal += self.damage"
+        },
+        "regen":{
+            "heal":"self.lifesteal / random.randint(15,25) * 10",
+            "weight":10,
+            "target":"self"
+        },
+        "summon":{
+            "summonable":[
+                "Ghost","Zombie","Splodeshroom"
+            ],
+            "quantity":1,
+            "weight":10,
+            "timings":{
+                "atk":667,
+                "block":[-1,-1],
+                "counter":[-1,-1]
+            }
+        }
+    },
+    "translations":{
+        "EN":{
+            "name":"Swordsman",
+            "punch":{
+                "name":"Quick Slash",
+                "text":"The Swordsman slashes through the party!"
+            },
+            "stab":{
+                "name":"Crimson Stab",
+                "text":"The Swordsman stabs [AFNAME]!"
+            },
+            "regen":{
+                "name":"Deoxidizing",
+                "text":"The Swordsman heals from the accumulated pain!"
+            },
+            "summon":{
+                "name":"Intimidate",
+                "text":"The Swordsman forces a [AFNAME] to fight the party!"
+            }
+        },
+        "ES":{
+            "name":"Espadachín",
+            "punch":{
+                "name":"Espadazo Veloz",
+                "text":"¡El Espadachín hiere a [AFNAME] y a [AFNAME1] de una cuchillada!"
+            },
+            "stab":{
+                "name":"Puñalada Carmesí",
+                "text":"¡El Espadachín apuñala a [AFNAME]!"
+            },
+            "regen":{
+                "name":"Desoxidación",
+                "text":"¡El Espadachín se cura con el daño inflingido!"
+            },
+            "summon":{
+                "name":"Presión",
+                "text":"¡El Espadachín obliga a que un [AFNAME] se una al combate!"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":6,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Guns",
+    "mult":4.5,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[100,1],
+        "$WeaponSpecific":[10,1]
+    },
+    "name":"Blunderbass Attachment",
+    "description":"oh god why",
+    "img":"assets/definitions/specials/imgs/spec0015.png"
+}

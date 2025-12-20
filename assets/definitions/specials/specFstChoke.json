@@ -1,0 +1,14 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":5,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Hand to Hand",
+    "mult":4,
+    "animation":"$DEFAULT",
+    "effects":{
+    },
+    "name":"Jugular Stopper",
+    "description":"also known as choking someone to death",
+    "img":"assets/definitions/specials/imgs/spec0004.png"
+}

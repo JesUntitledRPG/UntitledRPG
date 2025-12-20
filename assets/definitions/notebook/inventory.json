@@ -1,0 +1,117 @@
+{
+    "type":"URPGPage",
+    "name":"base.base.invPage",
+    "formver":0,
+    "bgcol":[0,0,0,0],
+    "frame":[10,10,940,700],
+    "extradata":["0","0"],
+    "elements":[
+        {
+            "type":"image",
+            "image":"$STSCR:img = pygame.image.load(\"assets/notebookpaper.png\").convert_alpha();imgmask = pygame.mask.from_surface(pygame.image.load(\"assets/pagemask.png\"));img.blit(imgmask.to_surface(unsetcolor=(238,213,12,255),setcolor=(0,0,0,0)));img.set_colorkey((238,213,12,255));self.imgdata = img",
+            "position":[0,0]
+        },
+        {
+            "type":"image",
+            "image":"$STSCR:self.imgdata=party.partymembers[self.extradata[0]].hpimage",
+            "position":[70,80]
+        },
+        {
+            "type":"text",
+            "text":"$STSCR:self.textdata=party.partymembers[self.extradata[0]].name",
+            "space":[96,80,100,32]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:self.imgdata=pygame.Surface((20,20)).convert_alpha();self.imgdata.fill((0,0,0,0));pygame.draw.polygon(self.imgdata,(100,100,100),((0,0),(20,10),(0,20)))",
+            "drawif":"if (len(party.partymembers)) == 1: self.cond=False",
+            "execute":"if self.extradata[0]+1 != len(party.partymembers):self.extradata[0]+=1\nelse:self.extradata[0]=0",
+            "position":[48,80]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:self.imgdata=pygame.Surface((20,20)).convert_alpha();self.imgdata.fill((0,0,0,0));pygame.draw.polygon(self.imgdata,(100,100,100),((20,0),(0,10),(20,20)))",
+            "drawif":"if (len(party.partymembers)) == 1: self.cond=False",
+            "execute":"if self.extradata[0]-1 != -1:self.extradata[0]-=1\nelse:self.extradata[0]=len(party.partymembers)-1",
+            "position":[70,80]
+        },
+        {
+            "type":"animated",
+            "frames":["$STSCR:self.imgdata=pygame.transform.scale_by(pygame.image.load(\"assets/charportraits/urpgguy/guy_frontfacing0001.png\").convert_alpha(),3.5)",
+                "$STSCR:self.imgdata=pygame.transform.scale_by(pygame.image.load(\"assets/charportraits/urpgguy/guy_frontfacing0002.png\").convert_alpha(),3.5)",
+                "$STSCR:self.imgdata=pygame.transform.scale_by(pygame.image.load(\"assets/charportraits/urpgguy/guy_frontfacing0003.png\").convert_alpha(),3.5)"],
+            "fpslist":[3,3,3],
+            "position":[80,110],
+            "loop":1
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:rendersurf=pygame.Surface((400,170)).convert_alpha();rendersurf.fill((255,255,255),(5,5,390,160));rendersurf.blit(font.render(\"Armor\",True,(0,0,0)),(10,5));self.imgdata=rendersurf",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_armr.json\");self.setActive(\"base.base.invArmr\")",
+            "position":[450,100]
+        },
+        {
+            "type":"text",
+            "text":"$STSCR:if party.partymembers[self.extradata[0]].armor != \"\":self.textdata=(str(\"[N c=(0,0,0)]\")+party.partymembers[self.extradata[0]].armor)\nelse:self.textdata=\"[N]None\"",
+            "space":[460,240,100,32]
+        },
+        {
+            "type":"image",
+            "image":"$SCR:assets/definitions/notebook/scripts/partyarmor.py",
+            "position":[450,130]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:rendersurf=pygame.Surface((400,170)).convert_alpha();rendersurf.fill((0,255,255),(5,5,390,160));rendersurf.blit(font.render(\"Weapon\",True,(0,0,0)),(10,5));self.imgdata=rendersurf",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_weap.json\");self.setActive(\"base.base.invWeap\")",
+            "position":[450,280]
+        },
+            {
+            "type":"text",
+            "text":"$STSCR:if party.partymembers[self.extradata[0]].weapon != \"\":self.textdata=(str(\"[N c=(0,0,0)]\")+party.partymembers[self.extradata[0]].weapon)\nelse:self.textdata=\"[N]None\"",
+            "space":[460,420,100,32]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:rendersurf=pygame.Surface((190,170)).convert_alpha();rendersurf.fill((255,0,255),(5,5,180,160));self.imgdata=rendersurf",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_badge.json\");self.setActive(\"base.base.invBadge\")",
+            "position":[450,460]
+        },
+        {
+            "type":"image",
+            "image":"$SCR:assets/definitions/notebook/scripts/partyweapon.py",
+            "position":[450,305]
+        },
+        {
+            "type":"image",
+            "image":"$ST/SCR:self.extradata[1]=0:assets/definitions/notebook/scripts/partybadge.py",
+            "position":[480,460]
+        },
+        {
+            "type":"text",
+            "text":"$STSCR:if party.partymembers[self.extradata[0]].badges != \"\":self.textdata=(str(\"[N]\")+party.partymembers[self.extradata[0]].badges[self.extradata[1]])\nelse:self.textdata=\"[N]None\"",
+            "space":[456,601,100,32]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:rendersurf=pygame.Surface((190,170)).convert_alpha();rendersurf.fill((255,0,255),(5,5,180,160));self.imgdata=rendersurf",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_badge.json\");self.setActive(\"base.base.invBadge\")",
+            "position":[660,460]
+        },
+        {
+            "type":"image",
+            "image":"$ST/SCR:self.extradata[1]=1:assets/definitions/notebook/scripts/partybadge.py",
+            "position":[690,460]
+        },
+        {
+            "type":"text",
+            "text":"$STSCR:if party.partymembers[self.extradata[0]].badges != \"\":self.textdata=(str(\"[N]\")+party.partymembers[self.extradata[0]].badges[self.extradata[1]])\nelse:self.textdata=\"[N]None\"",
+            "space":[666,601,100,32]
+        },
+        {
+            "type":"text",
+            "text":"[N c=(0,0,0)]Badges",
+            "space":[450,630,100,32]
+        }
+    ]
+}

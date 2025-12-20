@@ -1,0 +1,7 @@
+SETTINGS.DAT formatting:
+1. All lines are sepparated with commas.
+2. Line 1 contains general data: your resolution in a tuple, the game version that you're running, if you're in full screen, and what language you're on.
+	EX: (1280,720),0.6.0PA,False,Spanish means that URPG is running at 720p, on the Second Rewrite, on Windowed mode, in the Spanish language.
+3. Line 2 will contain your keybinds when implemented, separated in this order:
+	Interact,Return,Up,Down,Left,Right
+	EX: K_Z,K_X,K_UP,K_DOWN,K_LEFT,K_RIGHT means that Interact is Z, Return is X, and Movement is mapped to the arrow keys.

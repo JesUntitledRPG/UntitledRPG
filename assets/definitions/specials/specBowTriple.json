@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":4,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Bow-esque Weapons",
+    "mult":3,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[60,1],
+        "$WeaponSpecific":[30,1]
+    },
+    "name":"Quickfire",
+    "description":"For when bows want to be guns.",
+    "img":"assets/definitions/specials/imgs/spec0020.png"
+}

@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":5,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Science Equipment",
+    "mult":3.33,
+    "animation":"$DEFAULT",
+    "effects":{
+        "infect":[85,1],
+        "burning":[15,1]
+    },
+    "name":"Oil of Vitriol",
+    "description":"two H one S and four O in molecular",
+    "img":"assets/definitions/specials/imgs/spec0030.png"
+}

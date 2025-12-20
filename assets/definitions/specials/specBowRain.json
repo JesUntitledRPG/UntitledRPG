@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":9999,
+    "party":"enemy",
+    "combo":"Bow-esque Weapons",
+    "mult":2.3,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[70,1],
+        "$WeaponSpecific":[50,1]
+    },
+    "name":"Arrow Rain",
+    "description":"Also known as: the Carpet Arrow.",
+    "img":"assets/definitions/specials/imgs/spec0021.png"
+}

@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Hand to Hand",
+    "mult":2.25,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":15
+    },
+    "name":"Quarked Kick",
+    "description":"Kick someone into next week.",
+    "img":"assets/definitions/specials/imgs/spec0003.png"
+}

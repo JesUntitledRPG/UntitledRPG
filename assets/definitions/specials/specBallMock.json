@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Joke Props",
+    "mult":1.25,
+    "animation":"$DEFAULT",
+    "effects":{
+        "sad":[100,1]
+    },
+    "name":"Vicious Mockery",
+    "description":"haha look at this lad",
+    "img":"assets/definitions/specials/imgs/spec0019.png"
+}

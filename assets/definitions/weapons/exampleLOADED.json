@@ -1,0 +1,17 @@
+{
+    "type":"URPGWeapon",
+    "name":"Example Weapon",
+    "category":"Other",
+    "filepath":"assets/",
+    "img":"theonealiasedimage.png",
+    "description":"An example weapon. Change the values in this file to make your own!",
+    "price":0,
+    "tier":0,
+    "stats":[0,0,0,0,0,0],
+    "specials":[
+        "specBallMock",
+        "specFstUpper",
+        "specSwoSpin",
+        "specWanElectrocute"
+    ]
+}

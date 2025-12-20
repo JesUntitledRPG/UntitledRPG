@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":4,
+    "party":"enemy",
+    "combo":"Guns",
+    "mult":1.7,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[85,1],
+        "$WeaponSpecific":[20,1]
+    },
+    "name":"\"Cowboy Style\"",
+    "description":"why would you do this",
+    "img":"assets/definitions/specials/imgs/spec0013.png"
+}

@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":6,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Swords",
+    "mult":4.5,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[100,1],
+        "$WeaponSpecific":[50,1]
+    },
+    "name":"Aiming for the heart",
+    "description":"Skewer an enemy's vital organs for massive damage.",
+    "img":"assets/definitions/specials/imgs/spec0009.png"
+}

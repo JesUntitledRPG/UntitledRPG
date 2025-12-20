@@ -1,0 +1,20 @@
+ITEM MARKUP LANG:
++heal: heals hp
++dmg: deals damage
++trueheal: heals hp without taking into account any modifiers
++truedmg: deals damage without taking into account any modifiers
++effect: adds an effect with a specified duration and tier. the markup for this command is: +effect(EFFECT,TURNS,TIER). will support a wildcard as the effect parameter in the future.
++deleffect: removes an effect. same markup as +effect, but without TURNS or TIER parameters. can support a wildcard as the EFFECT parameter, and, in that case, will delete all of the effects of the affected player character.
++flag: sets a flag. unused for now.
++delflag: removes a flag. unused for now.
++additem: gives another item. can be used to create things like a multi-use item. the markup for this command is: +give(ITEM,AMOUNT)
++delitem: removes another item. could be used for a crafting system of some kind down the line. the markup for this command is: +remove(ITEM,AMOUNT)
++save: ERRORS OUT IF NOT IN A SHOP OR AN INN. THIS IS INTENTIONAL. REMOVE REQUIREMENT AT YOUR OWN RISK. Will save your game.
++gold: Grants gold. Only works in SHOP.
++say: It's fucking addtext.
+
+multiple commands can be strung together with ";".
+
+this is valid as of 0.6.0PA. if 0.6.0PA gets given another name down the line, assume that 0.6.0PA is the version that comes after 0.5.0PA.
+
+no item apis have been added as of writing. addition of items must be done through modifying the game's binaries.

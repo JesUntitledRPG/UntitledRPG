@@ -1,0 +1,12 @@
+{
+    "type":"URPGBadge",
+    "name":"Bottle Cap",
+    "filepath":".r/assets/shop/badges/",
+    "img":"badge_bottlecap.png",
+    "description":"[N]It's a generic cap. These would probably be worth something in an apocalypse... nah, probably not. [B]You do feel it resonating with the number 5...",
+    "action":[{"type":"None"}],
+    "actiondesc":"Does nothing.",
+    "price":150,
+    "tier":0,
+    "stats":[0,1,0,0,0,0]
+}

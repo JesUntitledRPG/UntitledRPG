@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Small Knives",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+        "$WeaponSpecific":[5,1]
+    },
+    "name":"2x1",
+    "description":"Two slash wounds, AT HALF PRICE?! Exquisite.",
+    "img":"assets/definitions/specials/imgs/spec0010.png"
+}

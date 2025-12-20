@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":1,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Small Knives",
+    "mult":1.5,
+    "animation":"$DEFAULT",
+    "effects":{
+        "confused":90
+    },
+    "name":"Dagger Trick",
+    "description":"Distract the enemy.",
+    "img":"assets/definitions/specials/imgs/spec0009.png"
+}

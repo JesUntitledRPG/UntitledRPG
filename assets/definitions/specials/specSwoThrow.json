@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":9999,
+    "party":"enemy",
+    "combo":"Bow-esque Weapons",
+    "mult":2.1,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[60,1],
+        "$WeaponSpecific":[30,1]
+    },
+    "name":"Toss",
+    "description":"Throw your sword at an angle.",
+    "img":"assets/definitions/specials/imgs/spec0006.png"
+}

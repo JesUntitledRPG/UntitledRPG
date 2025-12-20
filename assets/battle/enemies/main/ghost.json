@@ -1,0 +1,61 @@
+{
+    "type":"URPGEnemy",
+    "filepath":"assets/battle/enemies/main/",
+    "name":"Ghost",
+    "kind":"standard",
+    "icon":"assets/hpicon_ghost.png",
+    "animations":{
+        "PTBIdle":"assets/urpg-ghost.png"
+    },
+    "hp":200,
+    "def":0,
+    "gold":[7,13],
+    "moves":{
+        "spook":{
+            "dmg":[15,35],
+            "weight":85,
+            "target":"single",
+            "timings":{
+                "atk":1200,
+                "block":[1110,1580],
+                "counter":[1150,1460]
+            }
+        },
+        "haunt":{
+            "dmg":[22,45],
+            "effect":"confused",
+            "chance":0.8,
+            "weight":15,
+            "target":"single",
+            "timings":{
+                "atk":1020,
+                "block":[960,1390],
+                "counter":[985,1280]
+            }
+        }
+    },
+    "translations":{
+        "EN":{
+            "name":"Ghost",
+            "spook":{
+                "name":"Punch",
+                "text":"The Ghost surprises [AFNAME] with an attack!"
+            },
+            "haunt":{
+                "name":"Loop-de-loop",
+                "text":"The Ghost spins around [AFNAME]!"
+            }
+        },
+        "ES":{
+            "name":"Fantasma",
+            "spook":{
+                "name":"Sustito",
+                "text":"¡El Fantasma sorprende a [AFNAME] con un ataque!"
+            },
+            "haunt":{
+                "name":"A la manzana",
+                "text":"¡El Fantasma da vueltas alrededor de [AFNAME]!"
+            }
+        }
+    }
+}

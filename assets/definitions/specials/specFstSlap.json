@@ -1,0 +1,14 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":2,
+    "party":"enemy",
+    "combo":"Hand to Hand",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+    },
+    "name":"Slap",
+    "description":"Slap 2 enemies.",
+    "img":"assets/definitions/specials/imgs/spec0002.png"
+}

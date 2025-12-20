@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"allied",
+    "combo":"Wands",
+    "mult":1,
+    "animation":"$DEFAULT",
+    "effects":{
+        "regen":[20,1]
+    },
+    "name":"Healing",
+    "description":"Regenerate flesh.",
+    "img":"assets/definitions/specials/imgs/spec0026.png"
+}

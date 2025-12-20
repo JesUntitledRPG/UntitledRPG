@@ -1,0 +1,31 @@
+{
+    "type":"URPGPage",
+    "name":"base.base.default",
+    "formver":0,
+    "bgcol":[50,50,50],
+    "frame":[10,10,940,700],
+    "elements":[
+        {
+            "type":"text",
+            "text":"[N c=(255,141,161)]hewwo[N] everybody my name is market pliers and something failed to load",
+            "space":[10,10,160,500]
+        },
+        {
+            "type":"image",
+            "image":"assets/gameicon.png",
+            "position":[170,10]
+        },
+        {
+            "type":"button",
+            "image":"assets/alarmclock.png",
+            "execute":"print(\"good golly jes ACE again???\")",
+            "position":[400,300]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:rendersurf=pygame.Surface((160,160)).convert_alpha();rendersurf.fill((255,0,0));temptexteng = TextEng();temptexteng.add(\"click here to go to invpage\",(160,160));rendersurf.blit(temptexteng.draw((160,160)));del temptexteng;self.imgdata=rendersurf.copy();del rendersurf",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inventory.json\");self.setActive(\"base.base.invPage\")",
+            "position":[0,0]
+        }
+    ]
+}

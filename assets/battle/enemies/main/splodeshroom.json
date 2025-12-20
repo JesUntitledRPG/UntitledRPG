@@ -1,0 +1,61 @@
+{
+    "type":"URPGEnemy",
+    "filepath":"assets/battle/enemies/main/",
+    "name":"Splodeshroom",
+    "kind":"standard",
+    "icon":"assets/hpicon_splodeshroom.png",
+    "animations":{
+        "PTBIdle":"assets/urpg-splodeshroom.png"
+    },
+    "hp":50,
+    "def":2.5,
+    "gold":[15,25],
+    "moves":{
+        "bop":{
+            "dmg":[10,30],
+            "weight":20,
+            "target":"single",
+            "timings":{
+                "atk":1100,
+                "block":[1000,1480],
+                "counter":[1050,1560]
+            }
+        },
+        "explosion":{
+            "dmg":[35,60],
+            "effect":"$ANY",
+            "chance":1,
+            "weight":80,
+            "target":"party",
+            "timings":{
+                "atk":700,
+                "block":[-1,-1],
+                "counter":[620,740]
+            }
+        }
+    },
+    "translations":{
+        "EN":{
+            "name":"Splodeshroom",
+            "bop":{
+                "name":"Bop",
+                "text":"The Splodeshroom bops into [AFNAME]!"
+            },
+            "explosion":{
+                "name":"Self-Detonation",
+                "text":"The Splodeshroom self-detonates!"
+            }
+        },
+        "ES":{
+            "name":"Bombiñon",
+            "punch":{
+                "name":"Encontrón",
+                "text":"¡El Bombiñon colisiona con [AFNAME]!"
+            },
+            "bite":{
+                "name":"Mordisco",
+                "text":"¡El Bombiñon explota!"
+            }
+        }
+    }
+}

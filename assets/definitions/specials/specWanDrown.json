@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Wands",
+    "mult":1.8,
+    "animation":"$DEFAULT",
+    "effects":{
+        "wet":[100,1]
+    },
+    "name":"Drowner",
+    "description":"Fill an enemy's lungs (or similar) full of water.",
+    "img":"assets/definitions/specials/imgs/spec0024.png"
+}

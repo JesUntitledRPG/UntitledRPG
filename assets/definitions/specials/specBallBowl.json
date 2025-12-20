@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":4,
+    "targets":9999,
+    "party":"enemy",
+    "combo":"Joke Props",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+        "burning":[90,1]
+    },
+    "name":"Bowling Bomb",
+    "description":"Cheap, improvised missile!",
+    "img":"assets/definitions/specials/imgs/spec0018.png"
+}

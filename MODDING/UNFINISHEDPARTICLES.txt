@@ -1,0 +1,11 @@
+PARTICLE GUIDE:
+
+The particle system is quite complicated. Here's a guide on how to use it.
+
+1. Call ParticleSpawner with your chosen upon parameters. You should know what an image is, and hardcoded x and y are just that; hardcoded x and y values, which you can just set to zero if you don't care about them,
+and you can choose any list dedicated to particles to append them in, but the TYPE system is what you'll probably be stuck on. Here's a quick explaination.
+
+	1. The starting portion of your particle type defines it's Base Type: Standard, or Rotating.
+	2. After that, you should put in your orientation. Right now it's just typing in RighttoLeft or DowntoUp, but an angling system should be added in the future.
+	3. Add the variations now. VariedScale, VariedRotation, VariedX and VariedY are the current ones. Scale changes the image's scale randomly, while the others just offset the Rotation, X and Y values by a random interval.
+

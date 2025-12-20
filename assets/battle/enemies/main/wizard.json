@@ -1,0 +1,61 @@
+{
+    "type":"URPGEnemy",
+    "filepath":"assets/battle/enemies/main/",
+    "name":"Wizard",
+    "kind":"standard",
+    "icon":"assets/hpicon_wizard.png",
+    "animations":{
+        "PTBIdle":"assets/urpg-wizard.png"
+    },
+    "hp":250,
+    "def":0,
+    "gold":[7,15],
+    "moves":{
+        "star":{
+            "dmg":[10,30],
+            "weight":80,
+            "target":"single",
+            "timings":{
+                "atk":1300,
+                "block":[1200,1650],
+                "counter":[1255,1495]
+            }
+        },
+        "spell":{
+            "dmg":[20,40],
+            "effect":"drowsy",
+            "chance":0.9,
+            "weight":20,
+            "target":"single",
+            "timings":{
+                "atk":800,
+                "block":[680,1165],
+                "counter":[720,990]
+            }
+        }
+    },
+    "translations":{
+        "EN":{
+            "name":"Wizard",
+            "punch":{
+                "name":"Rocksummoning",
+                "text":"The Zombie punches [AFNAME]!"
+            },
+            "bite":{
+                "name":"Spellcasting",
+                "text":"The Zombie bites [AFNAME]!"
+            }
+        },
+        "ES":{
+            "name":"Mago",
+            "punch":{
+                "name":"Invocapiedras",
+                "text":"¡El Mago invoca un pedrolo!"
+            },
+            "bite":{
+                "name":"Hechizo",
+                "text":"¡El Mago usa un hechizo al azar!"
+            }
+        }
+    }
+}

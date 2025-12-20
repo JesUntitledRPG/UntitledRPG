@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Hand to Hand",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":20,
+        "$WeaponSpecific":[5,1]
+    },
+    "name":"Uppercut",
+    "description":"Punch someone right in the jaw.",
+    "img":"assets/definitions/specials/imgs/spec0001.png"
+}

@@ -1,0 +1,40 @@
+urpg_mapfile_V1
+
+# This is a map file. This is how maps are handled. Oh, sorry, "rooms". The text above is what the game searches for when determining if the file is or isn't viable for map loading purposes.
+
+# This indicates the Background used, and the paralax layers of particles to use.
+
+bg = ('assets/testingroom_bg.png)
+particles = [(('assets/testingroom_bgcubes.png),"paralax"),(('assets/particles_cubes'),"particles",scroll,full)]
+
+# These are the objects used in the room, and what they equal to.
+
+troomtile = ('assets/testingroom_floor.png",None)
+spawntroomtile = ('assets/testingroom_floor.png,Spawnable)
+battleterminalobj = ('assets/testingroom_battleterminal.png',battleterminal)
+blank = (None,None)
+
+# These are the layers that render the map.
+
+floor = [[troomtile,troomtile,troomtile],
+       [troomtile,spawntroomtile,troomtile],
+       [troomtile,troomtile,troomtile]]
+
+walls = [[battleterminalobj,None,None],
+         [None,None,None],
+         [None,None,None]]
+
+foreg = [[None,None,None],
+         [None,None,None],
+         [None,None,None]]
+
+# You can determine the exits of this room, and their corresponding coords here.
+# If there are no objects in those coords, create a blank tile in that position. It must be a Floor tile.
+
+exits = [[(1,3),map01]]
+
+# If there are any interactable objects, define them here.
+# It creates an object that runs x function with x parameters at the time of execution.
+
+battleterminal = [(0,0),enemyspawn(random)]
+

@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":9999,
+    "party":"enemy",
+    "combo":"Swords",
+    "mult":1.45,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[70,1],
+        "$WeaponSpecific":[15,1]
+    },
+    "name":"Spin",
+    "description":"wheeee",
+    "img":"assets/definitions/specials/imgs/spec0007.png"
+}

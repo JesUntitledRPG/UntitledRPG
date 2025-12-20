@@ -1,0 +1,55 @@
+{
+    "type":"URPGRoom",
+    "name":"base.test.exampleRoom",
+    "formatver":0,
+    "startpos":[1,1],
+    "size":[100,100],
+    "tilesize":1,
+    "tilesets": [
+        {
+            "nnn":"Check the Room class for a proper example of rooms."
+        }
+    ],
+    "details": [
+        {
+            "key":"value"
+        }
+    ],
+    "playerrenderlayer":1,
+    "layers":[
+        {
+            "type":0,
+            "cmds":[
+                {
+                    "tile":0,
+                    "rects":[[0,0,0,0],[0,0,0,0]]
+                }
+            ]
+        }
+    ],
+    "entities":[
+        {
+            "type":"trigger",
+            "activateby":"collision",
+            "exdata":["stands for extra data. put anythin' here cuz it's a datastore"],
+            "hitbox":[0,0,0,0],
+            "pos":[0,0],
+            "runtimelogic":"print(\"this is a python script\")",
+            "execute":"$/script.py"
+        },
+        {
+            "type":"trigger",
+            "activateby":"collision",
+            "exdata":["stands for extra data. put anythin' here cuz it's a datastore"],
+            "hitbox":[0,0,100,100],
+            "pos":[0,0],
+            "runtimelogic":"$NONE",
+            "execute":"if Game.inputs[\"kAccept\"][\"justDown\"] is True: RoomHandler.changeRoom(\"base.test.testRoom\")"
+        }
+    ],
+    "bgCol":[255,255,255],
+    "saveIcon":"",
+    "author":"The Untitled Team",
+    "mods":"vanilla",
+    "gamever":"PTB1"
+}

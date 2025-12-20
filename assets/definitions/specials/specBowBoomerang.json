@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Bow-esque Weapons",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[40,1],
+        "$WeaponSpecific":[15,1]
+    },
+    "name":"Bowmerang",
+    "description":"why",
+    "img":"assets/definitions/specials/imgs/spec0022.png"
+}

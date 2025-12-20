@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Small Knives",
+    "mult":2.5,
+    "animation":"$DEFAULT",
+    "effects":{
+        "fearful":60
+    },
+    "name":"Threaten",
+    "description":"The money... or YOUR HEALTH!",
+    "img":"assets/definitions/specials/imgs/spec0011.png"
+}

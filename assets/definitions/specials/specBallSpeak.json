@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":4,
+    "targets":9999,
+    "party":"enemy",
+    "combo":"Joke Props",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+        "angry":[45,1]
+    },
+    "name":"Eardrum Anhilator",
+    "description":"Blow up some eardrums.",
+    "img":"assets/definitions/specials/imgs/spec0016.png"
+}

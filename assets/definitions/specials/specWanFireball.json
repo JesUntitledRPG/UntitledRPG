@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Wands",
+    "mult":2.25,
+    "animation":"$DEFAULT",
+    "effects":{
+        "burn":[100,1]
+    },
+    "name":"Fireball",
+    "description":"SCORCH THE EARTH LADS",
+    "img":"assets/definitions/specials/imgs/spec0023.png"
+}

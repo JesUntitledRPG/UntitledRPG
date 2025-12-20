@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Wands",
+    "mult":2.5,
+    "animation":"$DEFAULT",
+    "effects":{
+        "electrocute":[100,1]
+    },
+    "name":"Lightning Bolt",
+    "description":"Smite someone.",
+    "img":"assets/definitions/specials/imgs/spec0025.png"
+}

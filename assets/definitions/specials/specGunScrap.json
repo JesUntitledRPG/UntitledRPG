@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":4,
+    "targets":3,
+    "party":"enemy",
+    "combo":"Guns",
+    "mult":2,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[85,1],
+        "$WeaponSpecific":[10,1]
+    },
+    "name":"Scrapload",
+    "description":"What do you do with metal scrap? Anything but THIS.",
+    "img":"assets/definitions/specials/imgs/spec0012.png"
+}

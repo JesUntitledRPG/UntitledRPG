@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":1,
+    "targets":1,
+    "party":"allied",
+    "combo":"Science Equipment",
+    "mult":1.5,
+    "animation":"$DEFAULT",
+    "effects":{
+        "atkboost":[100,1]
+    },
+    "name":"Oxide Prevention",
+    "description":"Buffs an ally's next move.",
+    "img":"assets/definitions/specials/imgs/spec0028.png"
+}

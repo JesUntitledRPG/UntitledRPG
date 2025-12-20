@@ -1,0 +1,15 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":2,
+    "targets":1,
+    "party":"enemy",
+    "combo":"Guns",
+    "mult":2.25,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[85,1]
+    },
+    "name":"Scope",
+    "description":"Somehow increases damage even at point-blank.",
+    "img":"assets/definitions/specials/imgs/spec0014.png"
+}

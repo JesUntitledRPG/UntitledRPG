@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":1,
+    "party":"allied",
+    "combo":"Joke Props",
+    "mult":1,
+    "animation":"$DEFAULT",
+    "effects":{
+        "regen":[15,1],
+        "absorption":[5,1]
+    },
+    "name":"Pie",
+    "description":"Yummy!",
+    "img":"assets/definitions/specials/imgs/spec0017.png"
+}

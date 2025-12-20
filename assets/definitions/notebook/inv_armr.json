@@ -1,0 +1,75 @@
+{
+    "type":"URPGPage",
+    "name":"base.base.invArmr",
+    "formver":0,
+    "bgcol":[0,0,0,0],
+    "frame":[10,10,940,700],
+    "extradata":["0","0"],
+    "elements":[
+        {
+            "type":"image",
+            "image":"$STSCR:img = pygame.image.load(\"assets/notebookpaper.png\").convert_alpha();imgmask = pygame.mask.from_surface(pygame.image.load(\"assets/pagemask.png\"));img.blit(imgmask.to_surface(unsetcolor=(238,213,12,255),setcolor=(0,0,0,0)));img.set_colorkey((238,213,12,255));self.imgdata = img",
+            "position":[0,0]
+        },
+        {
+            "type":"image",
+            "image":"$STSCR:self.imgdata=party.partymembers[self.extradata[0]].hpimage",
+            "position":[70,80]
+        },
+        {
+            "type":"text",
+            "text":"$STSCR:self.textdata=party.partymembers[self.extradata[0]].name",
+            "space":[96,80,100,32]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:self.imgdata=pygame.Surface((20,20)).convert_alpha();self.imgdata.fill((0,0,0,0));pygame.draw.polygon(self.imgdata,(100,100,100),((0,0),(20,10),(0,20)))",
+            "drawif":"if (len(party.partymembers)) == 1: self.cond=False",
+            "execute":"if self.extradata[0]+1 != len(party.partymembers):self.extradata[0]+=1\nelse:self.extradata[0]=0",
+            "position":[48,80]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:self.imgdata=pygame.Surface((20,20)).convert_alpha();self.imgdata.fill((0,0,0,0));pygame.draw.polygon(self.imgdata,(100,100,100),((20,0),(0,10),(20,20)))",
+            "drawif":"if (len(party.partymembers)) == 1: self.cond=False",
+            "execute":"if self.extradata[0]-1 != -1:self.extradata[0]-=1\nelse:self.extradata[0]=len(party.partymembers)-1",
+            "position":[70,80]
+        },
+        {
+            "type":"animated",
+            "frames":["$STSCR:self.imgdata=pygame.transform.scale_by(pygame.image.load(\"assets/charportraits/urpgguy/guy_frontfacing0001.png\").convert_alpha(),3.5)",
+                "$STSCR:self.imgdata=pygame.transform.scale_by(pygame.image.load(\"assets/charportraits/urpgguy/guy_frontfacing0002.png\").convert_alpha(),3.5)",
+                "$STSCR:self.imgdata=pygame.transform.scale_by(pygame.image.load(\"assets/charportraits/urpgguy/guy_frontfacing0003.png\").convert_alpha(),3.5)"],
+            "fpslist":[3,3,3],
+            "position":[80,110],
+            "loop":1
+        },
+        {
+            "type":"list",
+            "renderarea":[600,400],
+            "contents":[
+                {
+                    "type":"button",
+                    "image":"$STSCR:self.imgdata=pygame.Surface((300,32)).convert_alpha();self.imgdata.fill((0,0,0,0));self.imgdata.blit(font.render(list(party.armordict.keys())[self.imirror],True,(0,0,0)),(24,0));self.armor = \"\"\nfor armor in armortable:\n    if armor[0] == list(party.armordict.keys())[self.imirror]:self.imgdata.blit(pygame.transform.scale_by(armor[1],0.09375),(0,0))\nreductamount=0\nfor partymember in party.partymembers:\n   if partymember.armor==party.armordict.get(list(party.armordict.keys())[self.imirror]):reductamount+=1\nself.imgdata.blit(font.render(\"x\"+str(party.armordict[list(party.armordict.keys())[self.imirror]]-reductamount),True,(0,0,0)),(300,0))",
+                    "execute":"reductamount=0\nfor partymember in party.partymembers:\n   if partymember.armor[self.extradata[1]]==party.armordict[list(party.armordict.keys())[self.imirror]]:reductamount+=1\nif party.armordict[list(party.armordict.keys())[self.imirror]]-reductamount > 0:party.partymembers[self.extradata[0]].armor=list(party.armordict.keys())[self.imirror]",
+                    "position":[0,"0+self.imirror*24"]
+                }
+            ],
+            "repeat":"len(party.weapondict)",
+            "position":[400,100],
+            "iterate":"i"
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:self.imgdata=pygame.Surface((100,32)).convert_alpha();self.imgdata.fill((0,0,0,0));self.imgdata.blit(font.render(\"Back\",True,(0,0,0)))",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inventory.json\");self.setActive(\"base.base.invPage\")",
+            "position":[400,600]
+        },
+        {
+            "type":"text",
+            "drawif":"if party.weapondict != {}: self.cond=False",
+            "space":[400,100,400,64],
+            "text":"You have no weapons. Buy some in the shop!"
+        }
+    ]
+}

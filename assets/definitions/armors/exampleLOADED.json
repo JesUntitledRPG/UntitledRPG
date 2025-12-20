@@ -1,0 +1,14 @@
+{
+    "type":"URPGArmor",
+    "name":"Cat Ears",
+    "filepath":"assets/shop/armors/",
+    "img":"warcrime.png",
+    "imgscale":1,
+    "description":">:3 (why did I add this)",
+    "price":0,
+    "tier":0,
+    "weight":-1,
+    "stats":[0,0,0,0,0],
+    "resistance":[],
+    "imgpos":[348,-72]
+}

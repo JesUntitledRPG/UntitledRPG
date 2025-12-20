@@ -1,0 +1,16 @@
+{
+    "type":"URPGSpecial",
+    "cooldown":3,
+    "targets":2,
+    "party":"enemy",
+    "combo":"Swords",
+    "mult":2.1,
+    "animation":"$DEFAULT",
+    "effects":{
+        "bleed":[85,1],
+        "$WeaponSpecific":[10,1]
+    },
+    "name":"Stab Burst",
+    "description":"Impale three times and hit 2 enemies.",
+    "img":"assets/definitions/specials/imgs/spec0005.png"
+}
