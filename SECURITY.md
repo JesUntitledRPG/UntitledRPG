@@ -1,13 +1,11 @@
-# Security Policy
-
 ## Supported Versions
 
 Any versions prior to Rewrite 2 (PTB 1.0.0) should be considered unsafe. PTB 1.0.0 is technically unsafe, although technically safe to run if you don't get silly with what mods you load.
 
 | Version       | Supported          |
 | ------------- | ------------------ |
-In Progress | ...
-| PTB 1.0.1 | ... |
+In Progress | ⏰
+| PTB 1.0.1 | ⏰ |
 Current Versions | ✔, ✅, ☑, ❌
 | PTB 1.0.0 | ✔ |
 | 0.5.xprealpha | ❌ |
@@ -21,7 +19,7 @@ Current Versions | ✔, ✅, ☑, ❌
 
 ❌ - No support present, abandoned: use at your own risk
 
-... - It's literally an indev version of course it's going to be supported
+⏰ - It's literally an indev version of course it's going to be supported
 
 ## Reporting a Vulnerability
 
@@ -40,14 +38,17 @@ If the vulnerability:
 then;
 - Report to the library maintainers.
 - Check if there are any branches of that library that have that vulnerability already patched out or a workaround for the vulnerability.
-- Inform The Untitled Team of the vulnerability.
+- Inform The Untitled Team of the vulnerability ASAP so those versions can be patched.
 
 The libraries will be updated or the workarounds will be applied to versions with a checkmark. [Newest, LTS, Community Importance, Indev]
+
+This also applies to Python's own vulnerabilities - if Untitled RPG Game can be affected by those, update the Python version and recompile the affected versions.
+If the libraries can't be updated, please attempt to rewrite things that are vulnerable to said vulnerabilities.
 
 If the vulnerability:
 - is present in the latest version or indev releases
 - allows for severe/high security vulnerations
-- AND has been caused by my own code:
+- AND its cause is probably present in the codebase of Untitled RPG Game:
 
 then;
-All affected versions will be patched ASAP. Please report those vulnerabilities, as well as steps on how to reproduce them, to The Untitled Team as soon as possible!
+All affected versions will be patched ASAP. Please report those vulnerabilities, as well as steps on how to reproduce them, to The Untitled Team as soon as possible through any standard form of communication.
