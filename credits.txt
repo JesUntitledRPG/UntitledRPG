@@ -1,7 +1,10 @@
-Untitled RPG Game Version 1.0.0 Alpha (PTB1)
+Untitled RPG Game Version 1.0.1 Alpha (PTB1)
 Code: Jes
 Music: Exci, skxre87
 Art: Jes, Ghut, some designs by skxre87
+
+Certain concepts by people near the Untitled Team but not in it, or "honorifically" or "please stop asking"-lly in the Untitled Team.
+Special thanks to everyone who suggested things for the project.
 
 The Contributor List
 

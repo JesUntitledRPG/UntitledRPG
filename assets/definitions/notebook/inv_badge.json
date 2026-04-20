@@ -4,7 +4,13 @@
     "formver":0,
     "bgcol":[0,0,0,0],
     "frame":[10,10,940,700],
-    "extradata":["0","0"],
+    "extradata":["0",0],
+    "modifiers":{
+        "buttonsounds":{
+            "back":"sfx/select.wav",
+            "default":"sfx/badge_equip.ogg"
+        }
+    },
     "elements":[
         {
             "type":"image",
@@ -20,6 +26,11 @@
             "type":"text",
             "text":"$STSCR:self.textdata=party.partymembers[self.extradata[0]].name",
             "space":[96,80,100,32]
+        },
+        {
+            "type":"text",
+            "text":"$STSCR:self.textdata=\"Badges>Slot \"+str(self.extradata[1])",
+            "space":[70,52,200,32]
         },
         {
             "type":"button",
@@ -63,13 +74,19 @@
             "type":"button",
             "image":"$STSCR:self.imgdata=pygame.Surface((100,32)).convert_alpha();self.imgdata.fill((0,0,0,0));self.imgdata.blit(font.render(\"Back\",True,(0,0,0)))",
             "execute":"self.loadFromJSON(\"assets/definitions/notebook/inventory.json\");self.setActive(\"base.base.invPage\")",
-            "position":[400,600]
+            "position":[400,600],
+            "sfx":"back"
         },
         {
             "type":"text",
-            "drawif":"if party.weapondict != {}: self.cond=False",
+            "text":"$STSCR:self.textdata=str(self.extradata).removeprefix(\"[\").removesuffix(\"]\")",
+            "space":[10,10,200,32]
+        },
+        {
+            "type":"text",
+            "drawif":"if party.badgedict != {}: self.cond=False",
             "space":[400,100,400,64],
-            "text":"You have no weapons. Buy some in the shop!"
+            "text":"You have no badges. Buy some in the shop!"
         }
     ]
 }

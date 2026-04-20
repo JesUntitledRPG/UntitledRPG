@@ -1,10 +1,15 @@
 {
     "type":"URPGPage",
     "name":"base.base.invPage",
-    "formver":0,
+    "formver":1,
     "bgcol":[0,0,0,0],
     "frame":[10,10,940,700],
     "extradata":["0","0"],
+    "modifiers":{
+        "buttonsounds":{
+            "default":"sfx/select.wav"
+        }
+    },
     "elements":[
         {
             "type":"image",
@@ -19,7 +24,7 @@
         {
             "type":"text",
             "text":"$STSCR:self.textdata=party.partymembers[self.extradata[0]].name",
-            "space":[96,80,100,32]
+            "space":[96,80,300,32]
         },
         {
             "type":"button",
@@ -53,7 +58,7 @@
         {
             "type":"text",
             "text":"$STSCR:if party.partymembers[self.extradata[0]].armor != \"\":self.textdata=(str(\"[N c=(0,0,0)]\")+party.partymembers[self.extradata[0]].armor)\nelse:self.textdata=\"[N]None\"",
-            "space":[460,240,100,32]
+            "space":[460,240,300,32]
         },
         {
             "type":"image",
@@ -69,12 +74,12 @@
             {
             "type":"text",
             "text":"$STSCR:if party.partymembers[self.extradata[0]].weapon != \"\":self.textdata=(str(\"[N c=(0,0,0)]\")+party.partymembers[self.extradata[0]].weapon)\nelse:self.textdata=\"[N]None\"",
-            "space":[460,420,100,32]
+            "space":[460,420,300,32]
         },
         {
             "type":"button",
             "image":"$STSCR:rendersurf=pygame.Surface((190,170)).convert_alpha();rendersurf.fill((255,0,255),(5,5,180,160));self.imgdata=rendersurf",
-            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_badge.json\");self.setActive(\"base.base.invBadge\")",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_badge.json\");self.setActive(\"base.base.invBadge\",inherit=[True,False]);self.extradata[1]=0",
             "position":[450,460]
         },
         {
@@ -89,13 +94,13 @@
         },
         {
             "type":"text",
-            "text":"$STSCR:if party.partymembers[self.extradata[0]].badges != \"\":self.textdata=(str(\"[N]\")+party.partymembers[self.extradata[0]].badges[self.extradata[1]])\nelse:self.textdata=\"[N]None\"",
-            "space":[456,601,100,32]
+            "text":"$STSCR:if party.partymembers[self.extradata[0]].badges != \"\":self.textdata=(str(\"[N]\")+party.partymembers[self.extradata[0]].badges[0])\nelse:self.textdata=\"[N]None\"",
+            "space":[456,601,300,32]
         },
         {
             "type":"button",
             "image":"$STSCR:rendersurf=pygame.Surface((190,170)).convert_alpha();rendersurf.fill((255,0,255),(5,5,180,160));self.imgdata=rendersurf",
-            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_badge.json\");self.setActive(\"base.base.invBadge\")",
+            "execute":"self.loadFromJSON(\"assets/definitions/notebook/inv_badge.json\");self.setActive(\"base.base.invBadge\",inherit=[True,False]);self.extradata[1]=1",
             "position":[660,460]
         },
         {
@@ -105,13 +110,13 @@
         },
         {
             "type":"text",
-            "text":"$STSCR:if party.partymembers[self.extradata[0]].badges != \"\":self.textdata=(str(\"[N]\")+party.partymembers[self.extradata[0]].badges[self.extradata[1]])\nelse:self.textdata=\"[N]None\"",
-            "space":[666,601,100,32]
+            "text":"$STSCR:if party.partymembers[self.extradata[0]].badges != \"\":self.textdata=(str(\"[N]\")+party.partymembers[self.extradata[0]].badges[1])\nelse:self.textdata=\"[N]None\"",
+            "space":[666,601,300,32]
         },
         {
             "type":"text",
             "text":"[N c=(0,0,0)]Badges",
-            "space":[450,630,100,32]
+            "space":[450,630,300,32]
         }
     ]
 }

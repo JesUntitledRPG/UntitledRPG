@@ -5,6 +5,12 @@
     "bgcol":[0,0,0,0],
     "frame":[10,10,940,700],
     "extradata":["0","0"],
+    "modifiers":{
+        "buttonsounds":{
+            "back":"sfx/select.wav",
+            "default":"sfx/armor_equip.ogg"
+        }
+    },
     "elements":[
         {
             "type":"image",
@@ -51,11 +57,11 @@
                 {
                     "type":"button",
                     "image":"$STSCR:self.imgdata=pygame.Surface((300,32)).convert_alpha();self.imgdata.fill((0,0,0,0));self.imgdata.blit(font.render(list(party.armordict.keys())[self.imirror],True,(0,0,0)),(24,0));self.armor = \"\"\nfor armor in armortable:\n    if armor[0] == list(party.armordict.keys())[self.imirror]:self.imgdata.blit(pygame.transform.scale_by(armor[1],0.09375),(0,0))\nreductamount=0\nfor partymember in party.partymembers:\n   if partymember.armor==party.armordict.get(list(party.armordict.keys())[self.imirror]):reductamount+=1\nself.imgdata.blit(font.render(\"x\"+str(party.armordict[list(party.armordict.keys())[self.imirror]]-reductamount),True,(0,0,0)),(300,0))",
-                    "execute":"reductamount=0\nfor partymember in party.partymembers:\n   if partymember.armor[self.extradata[1]]==party.armordict[list(party.armordict.keys())[self.imirror]]:reductamount+=1\nif party.armordict[list(party.armordict.keys())[self.imirror]]-reductamount > 0:party.partymembers[self.extradata[0]].armor=list(party.armordict.keys())[self.imirror]",
+                    "execute":"reductamount=0\nfor partymember in party.partymembers:\n   if partymember.armor==party.armordict[list(party.armordict.keys())[self.imirror]]:reductamount+=1\nif party.armordict[list(party.armordict.keys())[self.imirror]]-reductamount > 0:party.partymembers[self.extradata[0]].armor=list(party.armordict.keys())[self.imirror]",
                     "position":[0,"0+self.imirror*24"]
                 }
             ],
-            "repeat":"len(party.weapondict)",
+            "repeat":"len(party.armordict)",
             "position":[400,100],
             "iterate":"i"
         },
@@ -63,13 +69,14 @@
             "type":"button",
             "image":"$STSCR:self.imgdata=pygame.Surface((100,32)).convert_alpha();self.imgdata.fill((0,0,0,0));self.imgdata.blit(font.render(\"Back\",True,(0,0,0)))",
             "execute":"self.loadFromJSON(\"assets/definitions/notebook/inventory.json\");self.setActive(\"base.base.invPage\")",
-            "position":[400,600]
+            "position":[400,600],
+            "sfx":"back"
         },
         {
             "type":"text",
-            "drawif":"if party.weapondict != {}: self.cond=False",
+            "drawif":"if party.armordict != {}: self.cond=False",
             "space":[400,100,400,64],
-            "text":"You have no weapons. Buy some in the shop!"
+            "text":"You have no armors. Buy some in the shop!"
         }
     ]
 }

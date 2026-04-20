@@ -1,0 +1,74 @@
+{
+    "type":"URPGPage",
+    "name":"base.wavebased.waveMachine",
+    "formver":1,
+    "bgcol":[0,0,0,255],
+    "frame":[10,10,940,700],
+    "extradata":[0,0],
+    "noteToSelf":"for future Jes; remove this note and also change the POSTbeep sfx, that ain't a beep but Freesound was down today",
+    "modifiers":{
+        "buttonsounds":{
+            "default":"sfx/POSTbeep.ogg"
+        }
+    },
+    "elements":[
+        {
+            "type":"text",
+            "text":"[ESN c=(0,255,0)]StarryExFI (version 0.6.1-protoMach-0.6.1-4)[NL]Booting from ADisk in ADInt 0 [NL](ID aSdkaGlkZXNtdGhoZXJlYnV0aXdvbid0anVzdHlldA==)[NL]CPUS: CPU 0 - APIC ID 0 - addr m0-0x0001[NL]vendor 3107 product 2022 (WARP packeteer, revision 0x02) at exip0 dev1 function 0 not configured[NL][N c=(0,255,0)]WaveMachine v1.0.0[NL]Please select wave details.",
+            "space":[60,60,840,580]
+        },
+        {
+            "type":"image",
+            "image":"assets/wavebased/images/waveTermFilter.png",
+            "position":[0,0]
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:surf=pygame.surface.Surface((940,5)).convert_alpha();surf.fill((50,50,50,30));self.imgdata=surf",
+            "execute":"pass",
+            "drawif":"pass",
+            "position":[0,0]
+        },
+        {
+            "type":"text",
+            "text":"Wave difficulty: {SET BY ADMINISTRATOR}",
+            "space":[60,200,600,200]
+        },
+        {
+            "type":"text",
+            "text":"Estimated Score: Unavailable",
+            "space":[60,264,200,200]
+        },
+                {
+            "type":"text",
+            "text":"[I c=(200,200,200)]Hi-Score: Unavailable",
+            "space":[400,264,200,200]
+        },
+        {
+            "type":"animated",
+            "frames":["assets/wavebased/images/static0001.png",
+                "assets/wavebased/images/static0002.png",
+                "assets/wavebased/images/static0003.png",
+                "assets/wavebased/images/static0004.png"],
+            "fpslist":[1,1,1,1],
+            "position":[0,0],
+            "loop":1
+        },
+        {
+            "type":"button",
+            "image":"$STSCR:self.imgdata=font.render(\"<LOAD A RANDOM WAVE>\",True,(255,255,255))",
+            "execute":"Game.state = \"Battle\";Game.substate = \"\";RoomManagerObj.roomDict[RoomManagerObj.curRoom].extraAssets[\"audio\"][\"thickletTheme\"].fadeout(250)",
+            "position":[60,322]
+        },
+        {
+            "type":"image",
+            "image":"assets/wavebased/images/waveTermScanlines.png",
+            "position":[0,0]
+        },
+        {
+            "type":"image",
+            "image":"assets/wavebased/images/waveTermFrame.png",
+            "position":[0,0]
+        }
+    ]
+}

@@ -7,12 +7,18 @@
             "expressions":{
                 "Neutral":"temp.png",
                 "Happy":"temphappy.png",
-                "Sad":"tempsad.png"
+                "Sad":"tempsad.png",
+                "Angry":"tempangry.png",
+                "Weirded":"tempweirded.png",
+                "Unamused":"tempunamused.png"
             },
             "iconexpressions":{
                 "Neutral":"trmnltemp.png",
                 "Happy":"trmnltemphappy.png",
-                "Sad":"trmnltempsad.png"
+                "Sad":"trmnltempsad.png",
+                "Angry":"trmnltempangry.png",
+                "Weirded":"trmnltempweirded.png",
+                "Unamused":"trmnltempunamused.png"
             },
             "soundfile":"talk.wav"
         },
@@ -21,11 +27,17 @@
             "filepath":"assets/charportraits/shopkeeper/",
             "expressions":{
                 "Neutral":"temp.png",
-                "Unamused":"tempunamused.png"
+                "Unamused":"tempunamused.png",
+                "Curious":"tempcurious.png",
+                "Happy":"temphappy.png",
+                "Angry":"tempangry.png"
                 },
             "iconexpressions":{
                 "Neutral":"trmnltemp.png",
-                "Unamused":"trmnltempunamused.png"
+                "Unamused":"trmnltempunamused.png",
+                "Curious":"trmnltempcurious.png",
+                "Happy":"trmnltemphappy.png",
+                "Angry":"trmnltempangry.png"
                 },
             "soundfile":"talk.wav"
             }
@@ -33,38 +45,10 @@
     "dialogue":{
         "init":[
             {
-                "type":"default",
-                "char":"Shopkeeper",
-                "expression":"Neutral",
-                "diag":"¡Buenas, Tio-!",
-                "timeout":60
-            },
-            {
-                "type":"default",
-                "char":"Guy",
-                "expression":"Neutral",
-                "diag":"buena tarde",
-                "timeout":60
-            },
-            {
-                "type":"default",
-                "char":"Guy",
-                "expression":"Happy",
-                "diag":"me hace descuento pana",
-                "timeout":60
-            },
-            {
-                "type":"default",
-                "char":"Shopkeeper",
-                "expression":"Unamused",
-                "diag":"No.",
-                "timeout":60
-            },
-            {
                 "type":"select",
-                "char":"Guy",
-                "expression":"Sad",
-                "diag":"boowomp",
+                "char":"Shopkeeper",
+                "expression":"Neutral",
+                "diag":"What's up?",
                 "timeout":60,
                 "linkto":[
                     "option1",
@@ -74,46 +58,116 @@
             }
         ],
         "option1":[
-            "option1",
+            "Where are we?",
+            {
+                "type":"default",
+                "char":"Shopkeeper",
+                "expression":"Unamused",
+                "diag":"... Guy. We're in the Thicklet. You live [I]five minutes[I]away from it.",
+                "timeout":60
+            },
             {
                 "type":"default",
                 "char":"Guy",
+                "expression":"Unamused",
+                "diag":"Of course I know that, but [I]where[I] in the Thicklet are we?",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Shopkeeper",
+                "expression":"Curious",
+                "diag":"I don't actually know, but it isn't on any maps I've seen of the island.",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Guy",
+                "expression":"Weirded",
+                "diag":"That's. Um. Worrying. Do you have supplies for the night...?",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Shopkeeper",
                 "expression":"Neutral",
-                "diag":"texto",
+                "diag":"No need to ask, as long as you have Nuggets. And considering that machine there basically allows for Nugget farming...",
                 "timeout":60
             }
         ],
         "option2":[
-            "option2",
+            "It's funny we use Nuggets as cash.",
             {
                 "type":"default",
-                "char":"Shopkeeper",
-                "expression":"Neutral",
-                "diag":"yiha",
+                "char":"Guy",
+                "expression":"Happy",
+                "diag":"Didn't the Ancestors use to call some food made outta bird like that?",
                 "timeout":60
-            }
-        ],
-        "option3":[
-            "option3",
+            },
             {
                 "type":"default",
                 "char":"Shopkeeper",
                 "expression":"Unamused",
-                "diag":"O te vas de mi puta tienda o te parto los huevos con mis propias manos, Tio. Esto no es una broma. ¿Acaso tienes huevos? ¿Qué- que mierdas es este mundo? ¿La anatomía humana es un concepto hoy en día, acaso?",
+                "diag":"Yes, but they also called bits of metal like that, and as you can see, these are bits of Portal. That's why we call them the same way.",
                 "timeout":60
             },
             {
                 "type":"default",
                 "char":"Guy",
                 "expression":"Neutral",
-                "diag":"a serte sincero yo solo queria el descuento pa",
+                "diag":"Oh.",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Guy",
+                "expression":"Happy",
+                "diag":"That's interesting!",
+                "timeout":60
+            },
+                        {
+                "type":"default",
+                "char":"Shopkeeper",
+                "expression":"Unamused",
+                "diag":"It would be if we kept pre-war writings. We didn't, so we have no idea why that was.",
+                "timeout":60
+            }
+        ],
+        "option3":[
+            "How does the Wave Machine work?",
+            {
+                "type":"default",
+                "char":"Guy",
+                "expression":"Angry",
+                "diag":"And why does it even exist, actually. Who'd make that.",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Shopkeeper",
+                "expression":"Happy",
+                "diag":"Someone who knows the way to my gratitude! Infinite money!",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Guy",
+                "expression":"Unamused",
+                "diag":"... of course. Any [B]actual[N] knowledge of its inner workings?",
+                "timeout":60
+            },
+            {
+                "type":"default",
+                "char":"Shopkeeper",
+                "expression":"Curious",
+                "diag":"Wave difficulty seems to be consistent even if payouts aren't. Though harder opponents do give out more cash.",
                 "timeout":60
             },
             {
                 "type":"default",
                 "char":"Shopkeeper",
                 "expression":"Unamused",
-                "diag":"Lo se, y no me importa. Fuera.",
+                "diag":"Here's a tip - go and buy things from me. You aren't going to kill any monster with your bare fists.",
                 "timeout":60
             }
         ]

@@ -5,6 +5,12 @@
     "bgcol":[0,0,0,0],
     "frame":[10,10,940,700],
     "extradata":["0","0"],
+    "modifiers":{
+        "buttonsounds":{
+            "back":"sfx/select.wav",
+            "default":"sfx/weapon_equip.ogg"
+        }
+    },
     "elements":[
         {
             "type":"image",
@@ -63,7 +69,8 @@
             "type":"button",
             "image":"$STSCR:self.imgdata=pygame.Surface((100,32)).convert_alpha();self.imgdata.fill((0,0,0,0));self.imgdata.blit(font.render(\"Back\",True,(0,0,0)))",
             "execute":"self.loadFromJSON(\"assets/definitions/notebook/inventory.json\");self.setActive(\"base.base.invPage\")",
-            "position":[400,600]
+            "position":[400,600],
+            "sfx":"back"
         },
         {
             "type":"text",

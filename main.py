@@ -48,7 +48,7 @@ print(resscale)
 
 
 """
-Untitled RPG Game - PTB1
+Untitled RPG Game - PTB1.0.1
 
 TIP: This version is horribly optimized, and a buggy mess.
 Please report any bugs in the Issues tab along with instructions on how to reproduce them.
@@ -74,8 +74,8 @@ scaleW = WINDOW_HEIGHT / 720
 fusedscale = scalelist[resscale] #type:float
 
 # NOTE: fonts moved here and new fonts have been added
+# TODO: what the hecc is this
 
-text = ""
 font = pygame.font.Font('fonts/RobotoMono-Regular.ttf', int(20 * fusedscale))
 smallboldfont = smolfont = pygame.font.Font('fonts/RobotoMono-Bold.ttf', int(12 * fusedscale))
 smolfont = pygame.font.Font('fonts/RobotoMono-Regular.ttf', int(8 * fusedscale))
@@ -116,7 +116,7 @@ itemtable = [["HealPot",pygame.image.load("assets/newui_healpot.png").convert_al
 weapontable =   [["Swords",[["Sword",pygame.image.load("assets/shop/weapons/shop_sword.png").convert_alpha(),"It's a big knife. The weapon of choice for most Venturers.","+weap(Sword)",250,1,(0,0,0,0,30,10),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]],
                 ["Cog Sword",pygame.image.load("assets/shop/weapons/shop_cogsword.png").convert_alpha(),"The cogs aren't gold. They're just spray painted tin ones. Still sharp though.","+weap(Cog Sword)",350,1,(0,0,0,0,20,20),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]],
                 ["Magma Sword",pygame.image.load("assets/shop/weapons/shop_magmasword.png").convert_alpha(),"Contrary to popular belief, it's not that hot. This is either an astounding feat or fake magma.","+weap(Magma Sword)",500,1,(0,0,0,0,25,15),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]],
-                ["Knight Sword",pygame.image.load("assets/shop/weapons/shop_knightsword.png").convert_alpha(),"Yet amother big knife, but with a handle. Quite a bit sharper, too...","+weap(Knight Sword)",500,2,(0,0,0,0,50,20),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]],
+                ["Knight Sword",pygame.image.load("assets/shop/weapons/shop_knightsword.png").convert_alpha(),"Yet another big knife, but with a handle. Quite a bit sharper, too...","+weap(Knight Sword)",500,2,(0,0,0,0,50,20),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]],
                 ["Graphical Sword",pygame.image.load("assets/shop/weapons/shop_gpusword.png").convert_alpha(),"Works as a space heater, expansion card and blunt object ...if you buy the good one for 2000 nuggets.","+weap(Graphical Sword)",750,2,(0,0,0,0,35,35),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]],
                 ["Fire Sword",pygame.image.load("assets/shop/weapons/shop_firesword_frame0.png").convert_alpha(),"Who in their right mind thought it was a to attach a flamethrower to a sword?","+weap(Fire Sword)",650,1,(0,0,0,0,40,25),["specSwoBurst","specSwoSpin","specSwoThrow","specSwoVitals"]]],pygame.image.load("assets/shop/weapons/icons/icon_sword.png").convert_alpha(),(520*scaleH,215*scaleW),1.5,0,"SwordCombo"],
                 # TODO: animate the firesword's asset
@@ -221,7 +221,6 @@ badgetable = [["Bottle Cap",pygame.image.load("assets/shop/badges/badge_bottleca
               ["Connector Badge",pygame.image.load("assets/shop/badges/badge_connector.png").convert_alpha(),"Oh, so THAT\'s how the burner gets electricity!",0,200,(0,0,0,0,1.5,1.25),[{"type":"event","event":"NewEffect","action":"affected.effects.electricity.duration -= 1"},{"type":"event","event":"NewAttack","action":"if affected.effects.electricity.duration > 0: attack.damage * 1.25"}], "Electricity lasts one turn less; and will multiply base attack damage by 1.25."],
               ["Cowboy Badge",pygame.image.load("assets/shop/badges/badge_cowboy.png").convert_alpha(),"Bring it a horse... It\'s gonna need it.",0,200,(0,0,1.5,2,0,0),[{"type":"event","event":"TurnEnd","action":"affected.cooldown -= 1"}],"At the end of a turn, reduces the cooldown of all of your abilities by 1 turn."],
               ["Cubic Badge",pygame.image.load("assets/shop/badges/badge_cubic.png").convert_alpha(),"Doesn\'t have real water.",0,200,(0,0,0,0,1.5,0),[{"type":"event","event":"NewSpecial","action":"for effect in spell.effects: if spell.type == \"wet\": spell.damage += 20"}],"Makes water related spells deal 20 more damage."],
-              ["Debugger\'s Badge",pygame.image.load("assets/shop/badges/badge_DEBUG.png").convert_alpha(),"Cheater. Or contributor. We\'re fine with both <3",-1,21-14-20-9-20-12-5-4,(0,0,0,0,0,0),[{"type":None}],"Allows access to debug tools, if any are present in the current version."],
               ["Exploder Badge",pygame.image.load("assets/shop/badges/badge_exploder.png").convert_alpha(),"\"this won\'t explode or anything righ-\"",0,200,(-25,0,0,0,1.75,1.75),[{"type":"timed","turns":"3","action":"all.hp -= 25; TerminalObj.add(wearer.name + \"\'s badge exploded!\")"}], "Deals 25 damage to everyone every 3 turns. This includes allies."], # TODO: add an exploding animation to this too
               ["The Fat Fish",pygame.image.load("assets/shop/badges/badge_fatfish.png").convert_alpha(),"The biggest fish to fry; ready for cooking.",-1,21-14-20-9-20-12-5-4,(10,1,2,2,1.1,1.1),[{"type":"event","event":"TurnEnd","action":"if wearer.hp > 15: wearer.hp += 10; TerminalObj.add(wearer.name + \"bit the Fish and recovered 10 HP.\")"}], "At the end of a turn, if your HP is lower or equal to 15, recover 10 HP."], # TODO: and an eating animation to this too
               ["Flowered Badge",pygame.image.load("assets/shop/badges/badge_flowered.png").convert_alpha(),"Ooh, fancy!",0,200,(0,0,3,0,0,1.25),[{"type":"event","event":"Block","action":"if random.randint(1,10) == 7: enemy.effects.append(\"charmed\",2)"}],"Every time you block, there's a 1 in 10 chance to charm the enemy."],
@@ -246,6 +245,7 @@ enemytable = []
 
 def FilePathDecoder(filepath):
     # This should be deprecated. The os library already has something for this, I think? And whatever I was going to do with relative/absolute filepaths could be reimplemented later if needed.
+    # We literally only use this once. Why does this exist.
     if filepath.startswith(".r/"):
         filepath = filepath.removeprefix(".r/")
     return filepath
@@ -367,6 +367,7 @@ def Outliner(img,color=(0,0,0,255),pos = (0,0),thickness=3):
 
 def ErrorThrower(Error):
     # os.walk why don't you work >:C
+    # NOTE: Check if this is really necessary...?
     raise Error
 
 class Animated():
@@ -440,11 +441,11 @@ class Animated():
                 else:
                     filepaths.extend(filenames)
         except Exception:
-            for (dirpath,dirnames,filenames) in os.walk(os.path.dirname(sys.argv[0])+filepath,onerror=ErrorThrower): # idk if this works on GNU and i hate this so much
+            for (dirpath,dirnames,filenames) in os.walk(filepath.removeprefix("/"),onerror=ErrorThrower): # TODO: this should probably be clumped together into one thing??? this sucks
                 if regex != "":
                     for filename in filenames.copy():
                         filenames.remove(filename)
-                        if re.search(regex,filename) != None: # first time doing regex, please forgive
+                        if re.search(regex,filename) != None:
                             filepaths.append(filename)
                             print("fn:",filename)
                 else:
@@ -629,6 +630,8 @@ class Party():
         self.weapondict = {}
         self.armordict = {}
         self.badgedict = {}
+        self.loaded = False
+
     def save(self):
         # saves to the savefile.
         # NOTE: SAVE/LOAD FUNCTIONS ALTERED TO USE ; INSTEAD OF , FOR SPLITITNG DUE TO CONFLICTS WITH LISTS!
@@ -771,7 +774,9 @@ class Party():
                     self.armordict = eval(linesplit[0])
                     self.weapondict = eval(linesplit[1])
                     self.badgedict = eval(linesplit[2])
+                    self.loaded = True
                     return True
+            self.loaded = True
             return True
         except Exception:
             return False
@@ -986,6 +991,108 @@ class Dragable():
         if action == True and maag == False:
             action = False, self.rect
         return action, self.rect 
+    
+class Slider():
+    def _whatToDo(self,totype,size=(10,10)):    # maybe move to a separate function? going Color -> Surface like this could be useful for a couple of usecases
+                                                # in fact I think we already do those so uhhh jot that down future Jes here's a NOTE
+        if isinstance(size,pygame.Rect) or isinstance(size, list) and len(size) > 2 or isinstance(size, tuple) and len(size) > 2:
+            size = [size[-2],size[-1]] # using negative indexing
+        if isinstance(totype, tuple) or isinstance(totype, list):
+            r, g, b, a = [0,0,0,255]
+            if len(totype) < 4:
+                if len(totype) < 3:
+                    return Game.errorSurf
+                else:
+                    r, g, b = totype
+            else:
+                r, g, b, a = totype
+            totype = pygame.Color(r,g,b,a)
+        if isinstance(totype, pygame.Color):
+            surf = pygame.Surface(size).convert_alpha()
+            surf.fill(totype)
+            return surf
+        elif isinstance(totype, pygame.Surface):
+            return totype
+        else:
+            return Game.errorSurf
+
+    def __init__(self,x=0,y=0,images=Game.errorSurf,scaleX = scaleH, scaleY = scaleW, steps = 0, doMarks=False) -> None:
+        self.scales = [scaleX,scaleY]
+        self.pos=[x,y]
+        self.images = []
+        self.doMarks = doMarks
+        if isinstance(images, list): # god i gotta learn how the python typing module works
+            if len(images) > 1:
+                for image in images:
+                    if isinstance(image, list):
+                        if len(image) > 1:
+                            self.images.append([image[0],self._whatToDo(image[1],image[0])])
+                        else:
+                            if isinstance(image[0],pygame.Rect):
+                                self.images.append([image[0],Game.errorSurf])
+                            else:
+                                self.images.append([pygame.Rect(0,0,10,10),self._whatToDo(image[0],pygame.Rect(0,0,10,10))])
+                    else:
+                        if isinstance(image,pygame.Rect):
+                            self.images.append([image,Game.errorSurf]) # maybe a switch/case could be used here to avoid this repeat...
+                        else:
+                            self.images.append([pygame.Rect(0,0,10,10),self._whatToDo(image,pygame.Rect(0,0,10,10))])
+            else:
+                self.images = []
+        else:
+            self.images = ([pygame.Rect(0,0,10,10),self._whatToDo(images,pygame.Rect(0,0,10,10))],[pygame.Rect(0,0,100,10),self._whatToDo(pygame.Color(100,100,100),(100,10))])
+        self.surfCache = Game.errorSurf # caches the last drawn surface AND also tells me if smth went wrong in the drawing process
+        self.dir = 0
+        if self.images[1][0][2] < self.images [1][0][3]:
+            self.dir = 1
+        self.active = False
+        self.oldPos = (0,0)
+        self.steps = steps
+        self.validPos = []
+        if self.steps > 0:
+            self.validPos = [int((self.images[1][0][self.dir + 2] / self.steps) * i) for i in range(self.steps)]
+
+    def draw(self, surface=WINDOW, sPos=[0,0]):
+        action = [False,0,False]
+        justActed = False
+        mPos = pygame.mouse.get_pos()
+        if self.images[0][0].copy().move(self.pos).collidepoint(mPos):
+            if Game.inputs["mLMB"]["justDown"] == True: # NOTE: Redo this cuz maag don't work right!
+                self.active = True
+        if Game.inputs["mLMB"]["pressed"] == False:
+            if self.active == True:
+                justActed = True
+            self.active = False
+        if self.active == True:
+            self.images[0][0][self.dir] = mPos[self.dir] - self.pos[self.dir]
+            if self.images[0][0][self.dir] < self.images[1][0][self.dir]:
+                self.images[0][0][self.dir] = self.images[1][0][self.dir]
+            elif self.images[0][0][self.dir] + self.images[0][0][self.dir + 2] > self.images[1][0][self.dir] + self.images[1][0][self.dir + 2]:
+                self.images[0][0][self.dir] = self.images[1][0][self.dir] + self.images[1][0][self.dir + 2] - self.images[0][0][self.dir + 2]
+        if self.oldPos != [self.pos[i] + self.images[0][0].topleft[i] + sPos[i] for i in range(2)]:
+            if self.steps != 0:
+                try:
+                    self.images[0][0][self.dir] = sorted([pos for pos in self.validPos if pos >= mPos[self.dir] - self.pos[self.dir]])[0]
+                except IndexError:
+                    self.images[0][0][self.dir] = self.images[1][0][self.dir + 2] - self.images[0][0][self.dir + 2]
+                action[1] = self.images[0][0][self.dir]
+            self.surfCache = pygame.Surface((self.images[0][0][2]+self.images[1][0][2],self.images[0][0][3]+self.images[1][0][3])).convert_alpha() # could probably make this cleaner ig and should but this should work for now
+            self.surfCache.fill((0,0,0,0))
+            self.surfCache.blit(self.images[1][1],self.images[1][0].topleft)
+            if self.doMarks:
+                stepVPos = self.validPos.copy() # TODO: try not to do this wth sorta bad coding practices am I on rn vro
+                if len(self.images) > 2: # TODO: Try using pygame.blits()??? Maybe for PTB 1.2 tho, and generalise the change them.
+                    stepVPos.append(self.images[1][0][self.dir + 2]-self.images[2][0][self.dir+2])
+                    for step in stepVPos:
+                        self.surfCache.blit(self.images[2][1],(step + self.images[2][0].topleft[0],self.images[2][0].topleft[1]))
+                else:
+                    stepVPos.append(self.images[1][0][self.dir + 2])
+                    for step in stepVPos:
+                        self.surfCache.blit(Game.errorSurf,(step,0))
+            self.surfCache.blit(self.images[0][1],self.images[0][0].topleft)
+        surface.blit(self.surfCache,self.pos)
+        self.oldPos = [self.pos[i] + self.images[0][0].topleft[i] + sPos[i] for i in range(2)]
+        return [self.active,self.images[0][0][self.dir],justActed]
 
 class TextEng():
     # A text rendering engine.
@@ -1005,7 +1112,9 @@ class TextEng():
                 "semibold":pygame.font.Font("fonts/RobotoMono-SemiBold.ttf",20),
                 "semibolditalic":pygame.font.Font("fonts/RobotoMono-SemiBoldItalic.ttf",20),
                 "thin":pygame.font.Font("fonts/RobotoMono-Thin.ttf",20),
-                "thinitalic":pygame.font.Font("fonts/RobotoMono-ThinItalic.ttf",20)
+                "thinitalic":pygame.font.Font("fonts/RobotoMono-ThinItalic.ttf",20),
+                "smalldefault":pygame.font.Font("fonts/RobotoMono-Regular.ttf",10),
+                "extrasmalldefault":pygame.font.Font("fonts/RobotoMono-Regular.ttf",5)
             }
         else:
             self.fonts = fonts
@@ -1014,6 +1123,8 @@ class TextEng():
         # To return to normacy, the normal symbol is [N] (or N:"default"). Hardcoded.
         # [IMG] will load and render an image.
         # The only other hardcoded symbol is [NL], which currently does newlines. We should probably make it do standard newlines.
+        # TODO: Replace [NL] with \n.
+        # TODO: Replace symbols with straight up font names.
         if symbols == {}:
             self.symbols = {
                 "B":"bold",
@@ -1027,7 +1138,10 @@ class TextEng():
                 "SB":"semibold",
                 "SBI":"semibolditalic",
                 "T":"thin",
-                "TI":"thinitalic"
+                "TI":"thinitalic",
+                "N":"default",
+                "SN":"smalldefault",
+                "ESN":"extrasmalldefault"
             }
         else:
             self.symbols = symbols
@@ -1037,45 +1151,81 @@ class TextEng():
         # A "s=INT" specifies spacing with the latest text chunk. Works well with newlines.
         # You can join them together in this way: c=(RGB);u;...
         self.offset = 0
+        # The imagedict is here because I haven't gotten the hang on how to use my Asset system and I think I'll have to remake it again -
+        # so this is here in the meantime.
         self.imagedict = {
 
         }
         self.lastsize = [0,0]
         self.decoration = decoration
     def parser(self,text,space=(300,700)):
+        # Writing this about the text format here so I don't forget on future inspection:
+        # Every text chunk has 3 parts.
+        # Part 0 is the font type. This is your "N", "NL", "B"...
+        # Part 1 is the text. This is processed and split here.
+        # Part 2 is the extra data! Like bolding and color. I forgot this once and relearned it due to the draw() function.
+        # I should make some actual docs for this soon...
         parselist = []
         for chunk in text:
             font = "default"
             if self.symbols.get(chunk[0]) != None and self.symbols.get(chunk[0]) != "NL" and self.symbols.get(chunk[0]) != "N":
                 font = self.symbols[(chunk[0])]
             rchunk = self.fonts[font].render(chunk[1],True,(255,255,255))
-            if rchunk.get_width() > space[0]:
+            reduction = 0
+            preitered = []
+            for parameter in chunk[2].split(";").copy():
+                hasArgument = False
+                if "=" in parameter:
+                    hasArgument = True
+                compare = parameter
+                if hasArgument:
+                    compare = parameter.split("=")[0]
+                if compare in preitered:
+                    chunk[2].pop(parameter)
+                    continue
+                if parameter.startswith("s="):
+                    reduction += int(parameter.removeprefix("s="))
+                elif parameter.startswith("sI="):
+                    reduction += int(parameter.removeprefix("sI="))
+                if hasArgument:
+                    preitered.append(parameter.split("=")[0])
+                else:
+                    preitered.append(parameter) 
+            if rchunk.get_width() > space[0] - reduction:
                 sentence = ""
                 additions = 0
                 for word in chunk[1].split():
                     if self.fonts["default"].render(sentence + word,True,(255,255,255)).get_width() > space[0]:
-                        parselist.append([chunk[0],sentence,chunk[2]])
+                        try:
+                            parselist.append([chunk[0],sentence,chunk[2]])
+                        except Exception:
+                            parselist.append([chunk[0],sentence,""]) # If something goes wrong here it's probably 'cause we forgot chunk[2]
                         additions += 1
                         sentence = ""
                     sentence += word + " "
-                parselist.append([chunk[0],sentence,chunk[2]])
+                try:
+                    parselist.append([chunk[0],sentence,chunk[2]])
+                except Exception:
+                    parselist.append([chunk[0],sentence,""]) # If something goes wrong here it's probably 'cause we forgot chunk[2]
             else:
                 if len(chunk) > 2:
                     parselist.append([chunk[0],chunk[1],chunk[2]])
                 else:
                     parselist.append([chunk[0],chunk[1],""])
-        if "]" in parselist[len(parselist)-2][1] and "[" in parselist[len(parselist)-2][1]:
-            parselist.insert(0,parselist[len(parselist)-2])
-            parselist.pop(len(parselist)-2)
+        # what the fuck was that
         return parselist
     def draw(self,space=(300,700),decopos=(-1,-1)):
+        # TODO: Rewrite this. There's some nitpicks I have with this, one of them being the 1-frame delay between text erasure.
+        # Also - this gets called every frame. I should add SOME type of caching mechanism.
+        position = [0,0]
         drawsurf = pygame.Surface(space).convert_alpha()
         drawsurf.fill((50,50,50,0))
-        position = [0,0]
-        spacingbckup = 0
-        if self.offset < 0:
-            self.offset = 0
         for text in self.textlist.copy():
+            try:
+                ptext[0]
+            except Exception:
+                # ptext DOES NOT EXIST YET
+                ptext = text
             # text drawer code here
             if text[0].lstrip() == "" or text[1].lstrip() == "" and text[0] != "NL":
                 self.textlist.remove(text)
@@ -1084,106 +1234,108 @@ class TextEng():
             if self.symbols.get(text[0]) != None and text[0] != "NL" and text[0] != "N" and text[0] != "IMG":
                 font = self.symbols[(text[0])]
             elif text[0] == "NL":
-                position[1] += self.fonts["default"].get_height()
+                if ptext != text:
+                    position[1] += self.fonts[self.symbols[ptext[0]]].get_height()
+                else:
+                    position[1] +=  self.fonts["default"].get_height()
                 position[0] = 0
                 continue
-            elif text[0] == "IMG" and text[1] != None:
-                drawsurf.blit(self.imagedict[text[1]],(position[0],position[1]-self.offset))
-                position[0] += self.imagedict[text[1]].get_rect()[2]
-                if position[0] > space[0]:
-                    position[0] = 0
-                    position[1] += self.imagedict[text[1]].get_rect()[3]
+            elif text[0].startswith("IMG"):
+                if text[1] != None:
+                    if self.imagedict.get(text[1]) == None:
+                        self.imagedict.update({text[1]:pygame.image.load(text[1]).convert_alpha()})
+                    surface = self.imagedict[text[1]]
+                else:
+                    surface = Game.errorSurf
+                drawsurf.blit(surface, position)
+                # image positioning gonna be hecc
+                try:
+                    parameter = text[0].split(" ")[1]
+                except IndexError:
+                    # assuming we don't have a parameter
+                    parameter = "inherited"
+                if parameter == "inherited":
+                    position[0] += surface.width
+                elif parameter == "overlapped":
+                    pass # This is here for intended behavior. Frankly I gotta remove this to save CPU time ever-so-slightly, but since I don't have documentation this is what you get.
                 continue
             color = (255,255,255)
             underlining = False
-            spacingbckup = 0
+            rtext = self.fonts[font].render(text[1],True,color)
+            if position[0] + rtext.width > space[0] and rtext.width < space[0]:
+                position[0] = 0
+                position[1] += rtext.get_height()
             if text[2] != "":
                 data = text[2].split(";")
                 for argument in data:
-                    if argument.startswith("c="):
+                    if argument.startswith("c"):
                         argument = argument.removeprefix("c=(").removesuffix(")")
                         color = [int(channel) for channel in argument.split(",")]
-                    if argument == "u":
+                        rtext = self.fonts[font].render(text[1],True,color)
+                    elif argument == "u":
                         underlining = True
-                    if argument.startswith("s="):
-                        argument = argument.removeprefix("s=")
+                    elif argument.startswith("s="):
+                        if position[0] <= 0:
+                            argument = argument.removeprefix("s=")
+                            position[0] += int(argument)
+                    elif argument.startswith("sI="):
+                        argument = argument.removeprefix("sI=")
                         position[0] += int(argument)
-                        spacingbckup = int(argument)
-            rtext = self.fonts[font].render(text[1].strip(),True,color)
             if underlining == True:
-                renderheight = rtext.get_rect().height
+                renderheight = rtext.height
                 pygame.draw.line(rtext,color,(0,renderheight - renderheight/ 8),(rtext.get_rect().width,renderheight - renderheight/ 8))
-            if position[0] + rtext.get_rect().width > space[0] - 0:
-                position[0] = 0 + spacingbckup
-                position[1] += self.fonts[font].get_height()
-            drawsurf.blit(rtext,(position[0],position[1]-self.offset)) # TODO: let aliasing change!
-            position[0] += rtext.get_rect().width
-        self.lastsize = [space[0],position[1]] # let's face it, we're always gonna have ONE full line o' text
+            drawsurf.blit(rtext,position)
+            position[0] += rtext.get_width()
+            ptext = text
         self.offset = position[1] - space[1]
-        while self.offset > 50:
-            if self.textlist[0][0] != 'NL' and self.textlist[0][0] != "N" and self.textlist[0][0] != "" and self.textlist[0][0] != "IMG":
-                self.offset -= self.fonts[self.symbols[(self.textlist[0][0])]].get_height()
-            elif self.textlist[0][0] != "":
-                self.offset -= self.fonts['default'].get_height()
-            if self.textlist[0][0] == "IMG":
-                reused = 0
-                for text in [text for text in self.textlist if text[0] == "IMG"]:
-                    if text[1] == self.textlist[0][1]:
-                        reused += 1
-                        break
-                if reused <= 0:
-                    try:
-                        self.imagedict.pop(self.textlist[0][1])
-                    except:
-                        pass # look i'm gonna be honest it'd be insane for this to happen somehow??
+        self.lastsize = position
+        while self.offset > 0:
+            if self.textlist[0][0] != "NL":
+                self.offset -= self.fonts["default"].render("a",True,(255,255,255)).height
             self.textlist.pop(0)
         if decopos != (-1,-1):
             retsurf = self.decoration.copy()
             retsurf.blit(drawsurf,decopos)
             return retsurf
         return drawsurf
-    def add(self,text,space=(300,700),noNL=False):
+    def add(self,text,space=(300,700),noNL=True):
         text = TextFixer(str(text))
-        # NOTE: remake this with regex possibly to split the text better, can't even >:3 now
-        if not text.startswith("["):
+        if text[0] != "[":
+            # assume we have no control character. we defo gotta make a better parser now :P but ah well
             text = "[N]" + text
-        text = text.split("[")
-        textcopy = text.copy()
+        text = [text for text in text.split("[") if text.strip() != ""]
+        print(text)
+        chunks = []
+        # NOTE: I MESSED UP WITH [NL] SO I GOTTA FIX IT
         for i in range(len(text)):
+            # NOTE: I gotta fix support for forward slashes.
             if text[i].startswith("/"):
-                textcopy[i] = textcopy[i-1] + "[" + textcopy[i].removeprefix("/")
-                textcopy.pop(i-1)
-        text = textcopy
-        for i in range(len(text)):
-            temp = text[i].split("]")
-            extra = temp[0].split(" ")
-            if len(extra) > 1:
-                temp[0] = extra[0]
-                temp.append(extra[1])
+                text[i] = text[i].removeprefix("/")
+                text[i] = "[" + text[i]
+            chunk = text[i].split("]")
+            # NOTE: This is probably still broken. This hacked, cobbled together fix should do, at the cost of probably causing some bug or two down the line. It's also a fallback, you can see.
+            if chunk[1] == "" and chunk[0] != "NL":
+                chunk[1] = chunk[0]
+                chunk[0] = "N"
+            elif chunk[1] != "" and chunk[0] == "NL": # TODO: why does this fail :sob:
+                chunks.append(["NL",""])
+                if len(chunks) > 0:
+                    chunk[0] = chunks[len(chunks)-2][0]
+                else:
+                    chunk[0] = "N"
+            if len(chunk) > 1:
+                chunk = [chunk[0],"".join([chunk[i + 1] for i in range(len(chunk) - 1)])] # this should be OK right? we'll see.
+            if chunk[1].endswith("/"):
+                chunk[1] = chunk[1].removesuffix("/")
+                chunk[1] += "]"
+            chunks.append(chunk)
+        for i in range(len(chunks)):
+            if len(chunks[i][0].split(" ")) == 1:
+                chunks[i].append("")
             else:
-                temp.append("")
-            if text[i].endswith("/]") == True:
-                print("condition triggered")
-                temp[1] = temp[1].removesuffix("/") + "]"
-            text.pop(i)
-            text.insert(i,temp) #type:ignore
-        for item in text:
-            if item[0].lstrip() == "":
-                text.pop(0)
-                continue
-        for chunk in text.copy():
-            if chunk[0] == "NL" and chunk[1] != "":
-                chunk[0] = "N"#type:ignore
-                text.insert(i,["NL","",""])#type:ignore
-                i += 1
-            elif chunk[0].split(" ")[0] == "NL":
-                chunk[0] = "NL"#type:ignore
-            elif chunk[0] == "IMG":
-                self.imagedict.update({chunk[1]+" ":pygame.image.load(chunk[1])})#this is a dumb solution
-            i += 1
-        if noNL != True:
-            text.append(["NL","",""])#type:ignore
-        self.textlist.extend(self.parser(text,space))
+                chunks[i].insert(2,chunks[i][0].split(" ")[1]) # using insert since that PROBABLY does add protection against misformed chunks. does it?
+                chunks[i][0] = chunks[i][0].split(" ")[0]
+        self.textlist.extend(self.parser(chunks,space))
 
 class NoteInfo:
     btnsurf = pygame.surface.Surface((319,32)).convert_alpha()
@@ -1205,6 +1357,8 @@ class Sounds:
     save = pygame.mixer.Sound("sfx/save.wav")
     slashsfx = pygame.mixer.Sound("sfx/slash1.wav")
     parrysfx = pygame.mixer.Sound("sfx/slash2.wav")
+    notebookopensfx = pygame.mixer.Sound("sfx/notebook_open.ogg")
+    notebookclosesfx = pygame.mixer.Sound("sfx/notebook_close.ogg")
 
 WINDOW.blit(smallboldfont.render("loaded sfx and buttons",True,(255,255,255)),(0,36))
 pygame.display.update()
@@ -1220,21 +1374,24 @@ class Room:
         self.name = ""
         self.author = ""
         self.bgCol = pygame.Color(0,0,0)
-        self.formatVer = 0
+        self.formatVer = 3
         self.saveIcon = Game.errorSurf
-        self.mods = "vanilla"
+        self.mods = ["base"]
         self.ppos = pygame.Vector2(0.0,0.0)
         self.cpos = pygame.Vector2(0.0,0.0)
         self.pspeed = pygame.Vector2(0.0,0.0)
         self.size = (0,0)
         self.tilesize = 0 # TODO: Probably allow per-layer tilesizing?
-        self.tilesets = [
+        self.tilesets = {
             # Quick note here: tiles only need the nnn key to be drawable. Other values are optional.
+            # Structured as "name":{"KEY":"filepath"}.
             # keys are written this way: s is side. c is corner. i is inner. e is external. n is neutral.
-            # sec, sic, sen, sin, nnn are the valid values for a tileset right now.
+            # sec, sic, sen, nnn are the valid values for a tileset right now.
+            # TODO: Add more tile values, and rename current tile values, for PTB 1.2.
+            # TODO: Actually do the autotiling thing??? That seems really useful why the hecc didn't I make this
             # The collision property automatically adds a hitbox to every tile in said tileset. TODO: Optimize that so it creates the minimum number of hitboxes possible.
             # If collision is set, the optional hitbox property can be used to specify a hitbox in pixels with a Rect.
-            ]
+            }
         self.details = {
             # Key:value. Nothing to clarify here.
         }
@@ -1243,12 +1400,33 @@ class Room:
         self.layers = [] # Look at the testing layers below for an example, as there's no docs right now.
         self.entities = [] # Look at the testing entity list below for an example for that same reason.
         self.exits = {} # A dict of room names and filepaths to exit to.
+        self.animations = {"idle_down":Animated().import_from_folder("assets/charportraits/urpgguy/",regex="frontfacing*",default=120), # The hardcoded animations shown down there.
+                      "idle_up":Animated().import_from_folder("assets/charportraits/urpgguy/",regex="backfacing*",default=120),
+                      "idle_side":Animated().import_from_folder("assets/charportraits/urpgguy/",regex="sideneutral*",default=120),
+                      "moving_down":Animated().import_from_folder("assets/charportraits/urpgguy/",regex="frontwalking*",default=120),
+                      "moving_up":Animated().import_from_folder("assets/charportraits/urpgguy/",regex="backwalking*",default=120),
+                      "moving_side":Animated().import_from_folder("assets/charportraits/urpgguy/",regex="side*",default=120)}
+        self.extraAssets = {} # Load any extra assets entities may use here.
     
+    def renderPlayer(self):
+        """
+        Renders the player object in the room. As of now, hardcoded to work with Guy's sprites.
+        """ # TODO: make it so it is NOT hardcoded
+        if Game.inputs["kLeft"]["pressed"] == True:
+            return pygame.transform.flip(self.animations["moving_side"].draw(),True,False)
+        elif Game.inputs["kRight"]["pressed"] == True:
+            return self.animations["moving_side"].draw()
+        if Game.inputs["kUp"]["pressed"] == True:
+            return self.animations["moving_up"].draw()
+        elif Game.inputs["kDown"]["pressed"] == True:
+            return self.animations["moving_down"].draw()
+        return self.animations["idle_down"].draw()
+
     def _load_test_room(self):
         """
         Loads a hardcoded testing/error handling room.
 
-        When creating mods, you should replace the values here and define a suitable room for your mod.
+        It's nothing much, but it should give basic insight on how rooms are internally structured.
         """
         self.name = "base.test.testRoom"
         self.ppos = pygame.Vector2(0.0,0.0)
@@ -1258,15 +1436,22 @@ class Room:
         self.tilesize = 40
         self.bgCol = pygame.Color(80,80,80)
         self.saveIcon = Game.errorSurf
-        self.formatVer = 0
+        self.formatVer = 2
         self.author = "The Untitled RPG Game Contributors"
-        self.mods = "vanilla"
-        self.tilesets = [
-            {"nnn":pygame.image.load("assets/testtile.png").convert_alpha(),
-             "collision":None},
-            {"nnn":pygame.image.load("assets/testwall.png").convert_alpha(),
-             "collision":pygame.Rect(0,20,40,80)}
-        ]
+        self.mods = ["base"]
+        self.tilesets = {
+            "testtile":{
+                "nnn":{
+                    "path":pygame.image.load("assets/testtile.png").convert_alpha(),
+                    "collision":None
+                }
+             },
+            "testwall":{
+                "nnn":{
+                    "path":pygame.image.load("assets/testwall.png").convert_alpha(),
+                    "collision":pygame.Rect(0,20,40,80)}
+            }
+        }
         self.details = {"testflower":pygame.image.load("assets/testdetail.png").convert_alpha()}
         self.rendersurf = pygame.surface.Surface(self.size).convert_alpha()
         self.playerrenderlayer = 2 # The layer number to render the player on top of.
@@ -1274,7 +1459,7 @@ class Room:
             {"type":0, # Layer type 0 is tilebased. Layer type 1 is detail/position based.
             "cmds":[ # This key stores the rects that will be drawn in this type of tile. Please note that you MUST sort the rects in ascending y order to avoid rendering issues.
                     {
-                        "tile":0,
+                        "tile":"testtile",
                         "rects":[pygame.Rect(0,0,36,24)]
                     }
                 ]},
@@ -1288,7 +1473,7 @@ class Room:
             {"type":0,
              "cmds":[
                  {
-                     "tile":1,
+                     "tile":"testwall",
                      "rects":[pygame.Rect(3,9,3,1),pygame.Rect(10,10,1,1),pygame.Rect(15,15,2,1)]
                  }
              ]}
@@ -1322,8 +1507,69 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
             }
         ]
         self.exits = {"base.test.exampleRoom":"assets/definitions/rooms/example.json"}
+        self.extraAssets = {}
         return self
     
+    def _load(self,roomData,filepath="str"):
+        """Finishes loading, or loads based on a preloaded JSON. Technically does most of the heavy lifting."""
+        if roomData["gamever"] != Game.version:
+            print(f"File {filepath} was made for a previous version of the game, though format hasn\'t changed. Here be dragons.")
+        # we don't have a modding API rn so we can skip the mod check for now, but remember in format version 2 and below "mods" were a string and not a list of strings for some reason
+        self.size = tuple(roomData["size"])
+        self.rendersurf = pygame.surface.Surface(self.size).convert_alpha()
+        if not self.size[0] > 0 and self.size[1] > 0:
+            raise Warning(f"Room size must be greater than 0 on all axis. Size: {self.size}")
+        self.formatVer = roomData["formatver"]
+        self.ppos = pygame.Vector2(roomData["startpos"])
+        self.tilesize = roomData["tilesize"] # once again we really should make this per-layer
+        self.tilesets = roomData["tilesets"] # TODO: Move this to the asset system. Apparently I forgot that I saved things as a string in PTB 1.0.0's development, whoops.
+        for tileset in self.tilesets:
+            for tile in self.tilesets[tileset]:
+                self.tilesets[tileset][tile]["path"] = pygame.image.load(self.tilesets[tileset][tile]["path"]).convert_alpha()
+        self.details = roomData["details"]
+        if isinstance(self.details, dict):
+            for detail in self.details:
+                self.details[detail] = pygame.image.load(self.details[detail]).convert_alpha()
+        self.playerrenderlayer = roomData["playerrenderlayer"]
+        self.layers = roomData["layers"]
+        self.bgCol = roomData["bgCol"]
+        for i in range(len(self.layers)):
+            if self.layers[i]["type"] == 0:
+                for j in range(len(self.layers[i]["cmds"])):
+                    for k in range(len(self.layers[i]["cmds"][j]["rects"])):
+                        self.layers[i]["cmds"][j]["rects"][k] = pygame.Rect(self.layers[i]["cmds"][j]["rects"][k])
+        self.entities = roomData["entities"]
+        for i in range(len(self.entities)):
+            if self.entities[i].get("hitbox") != None:
+                self.entities[i]["hitbox"] = pygame.Rect(self.entities[i]["hitbox"]) # we have collisionable entities now so this is no longer an interaction hitbox
+            for condition in self.entities[i]["activateby"]:
+                if condition == "collision":
+                    self.entities[i]["activateby"][condition] = pygame.Rect(self.entities[i]["activateby"][condition]) # NOTE: make it possible for a single "collision" holder to have multiple hitboxes that'd be neat i think
+            if filepath == "str":
+                filepath = ""
+            try:
+                if self.entities[i].get("runtimelogic") != None: # idk why you'd have an entity that doesn't execute anything but you do you ig
+                    if self.entities[i]["runtimelogic"].startswith("$"):
+                        if self.entities[i]["runtimelogic"] == "$NONE":
+                            self.entities[i]["runtimelogic"] = None
+                        else:
+                            self.entities[i]["runtimelogic"] = str(open(filepath.removesuffix(filepath.split("/")[len(filepath.split("/"))-1])+self.entities[i]["runtimelogic"].removeprefix("$")))
+                if self.entities[i].get("execute") != None: # idk why you'd have an entity that doesn't execute anything but you do you ig
+                    if self.entities[i]["execute"].startswith("$"):
+                        if self.entities[i]["execute"] == "$NONE":
+                            self.entities[i]["execute"] = None
+                        else:
+                            self.entities[i]["execute"] = str(open(filepath.removesuffix(filepath.split("/")[len(filepath.split("/"))-1])+self.entities[i]["execute"].removeprefix("$")))
+            except FileNotFoundError:
+                raise Warning(f"A script file could not be found. See above for details.")
+        self.author = roomData["author"]
+        if roomData["saveIcon"] != "": self.saveIcon = roomData["saveIcon"]
+        self.extraAssets = roomData["mapAssets"]
+        if self.extraAssets.get("audio") != None:
+            for asset in self.extraAssets["audio"]: # TODO: This could scale really badly, or really well. Check if a refactor would be better.
+                self.extraAssets["audio"][asset] = pygame.mixer.Sound(self.extraAssets["audio"][asset])
+        return self
+
     def loadFromJSON(self,filepath):
         """Loads a room from a JSON file."""
         # TODO: This and other loaders could benefit from multithread. Look into it.
@@ -1334,49 +1580,32 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
                 if roomData["name"] == "base.test.exampleRoom" and Game.debug == False:
                     print("The room provided is the example room definition file. You probably don't want to load THIS room. Go put values in it.")
                     # originally was an exception but idgaf atp
-                if roomData["formatver"] == 0:
-                    if roomData["gamever"] != Game.version:
-                        print(f"File {filepath} was made for a previous version of the game, though format hasn\'t changed. Here be dragons.")
-                    # we don't have a modding API rn so we can skip the mod check for now
-                    self.size = tuple(roomData["size"])
-                    self.rendersurf = pygame.surface.Surface(self.size).convert_alpha()
-                    if not self.size[0] > 0 and self.size[1] > 0:
-                        raise Warning(f"Room size must be greater than 0 on all axis. Size: {self.size}")
-                    self.formatVer = roomData["formatver"]
-                    self.ppos = pygame.Vector2(roomData["startpos"])
-                    self.tilesize = roomData["tilesize"] # once again we really should make this per-layer
-                    self.tilesets = roomData["tilesets"]
-                    self.details = roomData["details"]
-                    self.playerrenderlayer = roomData["playerrenderlayer"]
-                    self.layers = roomData["layers"]
-                    self.bgCol = roomData["bgCol"]
-                    for i in range(len(self.layers)):
-                        if self.layers[i]["type"] == 0:
-                            for j in range(len(self.layers[i]["cmds"])):
-                                print("rect",self.layers[i]["cmds"][j]["rects"])
-                                for k in range(len(self.layers[i]["cmds"][j]["rects"])):
-                                    self.layers[i]["cmds"][j]["rects"][k] = pygame.Rect(self.layers[i]["cmds"][j]["rects"][k])
-                    self.entities = roomData["entities"]
-                    for i in range(len(self.entities)):
-                        self.entities[i]["hitbox"] = pygame.Rect(self.entities[i]["hitbox"])
-                        try:
-                            if self.entities[i]["runtimelogic"].startswith("$"):
-                                if self.entities[i]["runtimelogic"] == "$NONE":
-                                    self.entities[i]["runtimelogic"] = None
-                                else:
-                                    self.entities[i]["runtimelogic"] = str(open(filepath.removesuffix(filepath.split("/")[len(filepath.split("/"))-1])+self.entities[i]["runtimelogic"].removeprefix("$")))
-                            if self.entities[i]["execute"].startswith("$"):
-                                if self.entities[i]["execute"] == "$NONE":
-                                    self.entities[i]["execute"] = None
-                                else:
-                                    self.entities[i]["execute"] = str(open(filepath.removesuffix(filepath.split("/")[len(filepath.split("/"))-1])+self.entities[i]["execute"].removeprefix("$")))
-                        except Exception:
-                            raise Warning(f"A script file could not be found. See above for details.")
-                    self.author = roomData["author"]
-                    if roomData["saveIcon"] != "": self.saveIcon = roomData["saveIcon"]
+                if roomData["formatver"] == self.formatVer:
+                    self._load(roomData)
                     return self
                 else:
-                   raise Warning(f"File {filepath} is using another format version.\nExpected: 0\nFound: {roomData["formatver"]}") 
+                    print(f"File {filepath} is using another format version.\nExpected:{Room().formatVer}\nFound: {roomData["formatver"]}")
+                    if roomData["formatver"] == 0:
+                        print("The version corresponding to this format version would be PTB 1.0.0 (1.0.0 Alpha AKA 0.6.0 Prealpha).")
+                        roomData["formatver"] = 1
+                        oldRoomData = roomData
+                        roomData["tilesets"] = {}
+                        for i in range(len(oldRoomData["tilesets"])):
+                            tileData = oldRoomData["tilesets"][i]
+                            roomData["tilesets"].update({str(i):{"nnn":{
+                                   "path":tileData["nnn"],
+                                   "hitbox":tileData["collision"]}}})
+                        # this converts old tile format into named tile format
+                    if roomData["formatver"] == 1:
+                        print("The version corresponding to this iteration of the format would be PTB 1.0.1 Indev.")
+                        for i in range(len(roomData["entities"])):
+                            if roomData["entities"][i].get("hitbox") != None:
+                                roomData["entities"][i]["activateBy"] = [{"collision":roomData[roomData["entities"][i]["hitbox"]]}]
+                        # this converts old hitbox format into new hitbox format
+                    if roomData["formatver"] < 3:
+                        roomData.update({"mapAssets":{}}) # this just adds this empty dict idk what i did in formatver 2
+                    self._load(roomData)
+                    return self
             else:
                 raise Warning(f"File {filepath} did not have the \"URPGRoom\" type.")
         except Exception:
@@ -1384,7 +1613,7 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
                 raise Warning(f"File {filepath} was not a JSON file.\n--- end of probably long debug message ---")
             else:
                 raise Warning("--- end of probably long debug message ---")
-        return False
+        return Room() # I think I underestimated how easy it is to just return empty objects if things go wrong.
 
     def draw(self):
         """
@@ -1401,25 +1630,25 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
                 for cmd in layer["cmds"]:                
                     for rect in cmd["rects"]:
                         if rect[1]*self.tilesize > self.ppos[1] and not playerRendered and lindex == self.playerrenderlayer: # I'll be very frank here; if you want the effect this code tried to achieve, please just split your walls in two. Or fix this and commit. Any combo of the 2 works for me.
-                            pygame.draw.rect(self.rendersurf,(255,0,0),(self.ppos[0],self.ppos[1],35,70))
+                            self.rendersurf.blit(self.renderPlayer(),(self.ppos[0],self.ppos[1]))
                             playerRendered = True
                         for i in range(rect[2]):
                             for j in range(rect[3]):
-                                self.rendersurf.blit(self.tilesets[cmd["tile"]]["nnn"],(self.tilesize*i+self.tilesize*rect[0],self.tilesize*j+self.tilesize*rect[1]))
-                                if self.tilesets[cmd["tile"]].get("collision") != None:
-                                    copyrect = self.tilesets[cmd["tile"]].get("collision").copy()
-                                    hitboxes.append(copyrect.move(self.tilesize*i+self.tilesize*rect[0],self.tilesize*j+self.tilesize*rect[1]))
+                                self.rendersurf.blit(self.tilesets[cmd["tile"]]["nnn"]["path"],(self.tilesize*i+self.tilesize*rect[0],self.tilesize*j+self.tilesize*rect[1]))
+                                if self.tilesets[cmd["tile"]]["nnn"].get("collision") != None:
+                                    copyrect = self.tilesets[cmd["tile"]]["nnn"].get("collision").copy() # type:ignore It shouldn't be NoneType. We've literally checked for this. If it's NoneType then somehow the value has changed in the middle of running the program which means we're already boned.
+                                    hitboxes.append(copyrect.move(self.tilesize*i+self.tilesize*rect[0],self.tilesize*j+self.tilesize*rect[1])) 
             elif layer["type"] == 1:
                 for cmd in layer["cmds"]:
                     cmd["positions"].sort()
                     for position in cmd["positions"]:
                         if position[1] > self.ppos[1] and not playerRendered and lindex == self.playerrenderlayer: # TODO: this code is broken asf, fix it
-                            pygame.draw.rect(self.rendersurf,(255,0,0),(self.ppos[0],self.ppos[1],35,70))
+                            self.rendersurf.blit(self.renderPlayer(),(self.ppos[0],self.ppos[1]))
                             playerRendered = True
                         self.rendersurf.blit(self.details[cmd["detail"]],position)
             lindex += 1
         if playerRendered == False:
-            pygame.draw.rect(self.rendersurf,(50,50,50),(self.ppos[0],self.ppos[1],35,70))
+            self.rendersurf.blit(self.renderPlayer(),(self.ppos[0],self.ppos[1]))
             # This is a failsafe. However, it'll trigger pretty often; so just call your normal player animation code.
         #if Game.debug == True:
         #    for hitbox in hitboxes:
@@ -1430,7 +1659,7 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
             movementvector[0] += -20*Game.milidt
             if self.pspeed[0] > 1:
                 self.pspeed[0] = 1
-        if Game.inputs["kRight"]["pressed"] == True:
+        elif Game.inputs["kRight"]["pressed"] == True:
             movementvector[0] += 20*Game.milidt
             if self.pspeed[0] < -1:
                 self.pspeed[0] = -1
@@ -1438,7 +1667,7 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
             movementvector[1] += -20*Game.milidt
             if self.pspeed[1] > 1 and movementvector[1] == 0:
                 self.pspeed[1] = 1
-        if Game.inputs["kDown"]["pressed"] == True:
+        elif Game.inputs["kDown"]["pressed"] == True:
             movementvector[1] += 20*Game.milidt
             if self.pspeed[1] < -1 and movementvector[1] == 0:
                 self.pspeed[1] = -1
@@ -1454,35 +1683,39 @@ if Game.inputs[\"kAccept\"][\"justDown\"] is True:
                     self.pspeed[i] += -40*math.copysign(1,self.pspeed[i])*Game.milidt
                 else:
                     self.pspeed[i] = 0
-        phitbox = pygame.Rect(self.ppos[0] + self.pspeed[0],self.ppos[1] + 60,35,10)
-        if phitbox.collideobjects(hitboxes) != None:
-            self.pspeed[0] = 0
-        phitbox.topleft = self.ppos[0],self.ppos[1] + self.pspeed[1] + 60
-        if phitbox.collideobjects(hitboxes) != None:
-            self.pspeed[1] = 0
-        phitbox.topleft = (self.ppos[0] + self.pspeed[0],self.ppos[1] + self.pspeed[1] + 60)
-        if phitbox.collideobjects(hitboxes) != None:
-            self.pspeed = pygame.Vector2(0,0)
-        self.ppos += self.pspeed
-        for i in range(2):
-            if self.ppos[i] < 0:
-                self.ppos[i] = 0
-            elif self.ppos[i] > self.size[i]-10:
-                self.ppos[i] = self.size[i]-10
         active = 0
         for entity in self.entities:
             # TODO: REALLY important to limit these execs before release.
-            if entity["runtimelogic"] != None:
+            if entity.get("runtimelogic") != None:
                 exec(entity["runtimelogic"])
             if entity["type"] == "trigger":
-                pygame.draw.rect(self.rendersurf,(0,0,255),entity["hitbox"],1)
+                for condition in entity["activateby"]:
+                    if list(condition.keys())[0] == "collision": #really bad way to do it rn but i'm eepy and lazy
+                        pygame.draw.rect(self.rendersurf,(0,255,255),condition["collision"],1)
+                        if pygame.Rect(condition["collision"]).colliderect(pygame.Rect(self.ppos[0],self.ppos[1],140,140)): # gotta dehardcode these
+                            exec(entity["execute"])
+                """
                 if entity["activateby"] == "collision":
                     if entity["hitbox"].collidepoint(self.ppos+(17.5,35)):
                         exec(entity["execute"])
                 else:
                     if exec(entity["activateby"]) != False:
                         exec(entity["execute"])
+                """
+            if entity.get("hitbox") != None:
+                hitboxes.append([entity["pos"][0],entity["pos"][1],entity["hitbox"][2],entity["hitbox"][3]])
             active += 1
+        for i in range(2):
+            self.ppos[i] += self.pspeed[i]
+            phitbox = pygame.Rect(self.ppos[0],self.ppos[1]+50,70,40) # this needs work :/ i think
+            if phitbox.collideobjects(hitboxes):
+                self.ppos[i] -= self.pspeed[i]
+                self.pspeed[i] = 0
+        for i in range(2):
+            if self.ppos[i] < 0:
+                self.ppos[i] = 0
+            elif self.ppos[i] > self.size[i]-10:
+                self.ppos[i] = self.size[i]-10
         if self.size[0] > 960 and self.ppos[0] > 480 and self.ppos[0] < self.size[0] - 480:
             self.cpos[0] = self.ppos[0] - 480
         if self.size[1] > 720 and self.ppos[1] > 360 and self.ppos[1] < self.size[1] - 360:
@@ -1513,22 +1746,37 @@ class RoomManager:
         """
         return self.roomDict[self.curRoom].draw()
 
-    def changeRoom(self,newRoom):
+    def changeRoom(self,roomName,filepath=""):
         roomsloaded = self.roomDict.keys()
-        newrooms = {newRoom:Room.loadFromJSON(Room(),self.roomDict[self.curRoom].exits[newRoom])} # we gotta find a filepath
-        for key in self.roomDict[newRoom].exits.keys():
+        if filepath == "":
+            loaded = {roomName:Room.loadFromJSON(Room(),self.roomDict[self.curRoom].exits[roomName])} # we gotta find a filepath SOMEHOW
+        else:
+            loaded = {roomName:Room.loadFromJSON(Room(),filepath)} # we already got one
+        print(loaded[roomName].exits)
+        try:
+            for key in loaded[roomName].exits.keys():
             # format for rooms wanted: roomname:roompath
-            if key not in roomsloaded:
-                print({key:Room.loadFromJSON(Room(),self.roomDict[newRoom].exits[key])})
-                newrooms.update({key:Room.loadFromJSON(Room(),self.roomDict[newRoom].exits[key])})
-            elif key in roomsloaded:
-                print({key:self.roomDict[key]})
-                newrooms.update({key:self.roomDict[key]})
-        self.roomDict = newrooms.copy()
-        self.curRoom = newRoom
+                if key not in roomsloaded:
+                    print({key:Room.loadFromJSON(Room(),self.roomDict[roomName].exits[key])})
+                    loaded.update({key:Room.loadFromJSON(Room(),self.roomDict[roomName].exits[key])})
+                elif key in roomsloaded:
+                    print({key:self.roomDict[key]})
+                    loaded.update({key:self.roomDict[key]})
+        except Exception:
+            print(loaded)
+            raise Warning("Something went wrong.") # i'm PRETTY SURE this is broken. TODO: remake it
+        self.roomDict = loaded  # ok so I finally get the loading system I myself made
+                                # documenting this now:
+                                # we:
+                                # 1. get all loaded rooms from old roomDict
+                                # 2. check if any of those match with our new room's exits; if so we put them with the new Room data
+                                # 3. replace roomDict with the new roomDict
+                                # idk if this is actually faster BUT it should save on using disk, so that's a good optimization IMO
+                                # it's a pain in the ass if you forget how it works tho so yea! telling you now C:
+        self.curRoom = roomName
         print(self.roomDict, self.curRoom)
 
-RoomHandler = RoomManager()
+RoomManagerObj = RoomManager()
 
 class Notebook:
     """The preferred UI method, since you can just make a JSON and use a page viewer and make most UI.\n
@@ -1536,24 +1784,48 @@ class Notebook:
     def __init__(self,pages={},active="") -> None:
         self.pagesurf = pygame.Surface((1,1)).convert_alpha()
         self.offset = [0,0]
-        self.pages = pages
+        self.pages = pages # BUG: There's an inevitable memory leak here. Fix it for PTB 1.1.
         self.active = active
         self.assetdict = {}
         self.extradata = []
         self.listpos = [0,0]
         self.imirror = 0
+        self.stopRendering = False
 
     def loadFromJSON(self,filepath):
         addition = json.load(open(filepath))
         self.pages.update({addition["name"]:addition})
+        try:
+            soundData = self.pages[addition["name"]]["modifiers"]["buttonsounds"].copy() # This needs some flexibility added in, but it should work for now.
+            self.pages[addition["name"]]["modifiers"]["buttonsounds"] = {}
+            print(soundData)
+            for i in range(len(soundData)):
+                self.pages[addition["name"]]["modifiers"]["buttonsounds"].update({list(soundData.keys())[i]:pygame.mixer.Sound(soundData[list(soundData.keys())[i]])}) # No, seriously, this needs flexibility ASAP.
+        except Exception:
+            pass
         return self
-
-    def setActive(self,setActiveTo): # NOTE: gotta set up the inherits
+    
+    def setActive(self,setActiveTo,inherit=[]): # NOTE: gotta set up the inherits
+        self.stopRendering = True
         self.active = setActiveTo
         self.assetdict = {}
-        self.extradata = []
+        if inherit == []:
+            self.extradata = []
+        else:
+            backupextradata = self.extradata
         if self.pages[self.active].get("extradata") != None:
-            self.extradata = [eval(data) for data in self.pages[self.active]["extradata"]]
+            try:
+                self.extradata = [eval(data) for data in self.pages[self.active]["extradata"]]
+            except TypeError:
+                try:
+                    self.extradata = [eval(str(data)) for data in self.pages[self.active]["extradata"]]
+                except Exception:
+                    self.extradata = ["" for data in self.pages[self.active]["extradata"]] # TODO: This probably fucks up all of the page rendering shit if even one tiny thing goes wrong. Fix that.
+        if inherit != []:
+            print("b",backupextradata)
+            for i in range(len(backupextradata)):
+                if inherit[i] == True:
+                    self.extradata[i] = backupextradata[i]
         self.pagesurf = pygame.Surface((self.pages[setActiveTo]["frame"][2],self.pages[setActiveTo]["frame"][3])).convert_alpha()
 
     def textToPos(self,pos):
@@ -1576,6 +1848,8 @@ class Notebook:
         self.cond = True
         if element.get("drawif") != None:
             exec(element["drawif"])
+        if self.stopRendering == True:
+            self.cond = False
         if self.cond:
             if element["type"] == "text":
                 if self.assetdict.get(element["text"]) is None:
@@ -1598,6 +1872,7 @@ class Notebook:
                     else:
                         temptexteng.add(element["text"],(element["space"][2],element["space"][3]))
                     self.assetdict.update({element["text"]:temptexteng.draw((element["space"][2],element["space"][3]))})
+                # TODO: Make a way for text to be outlined.
                 self.pagesurf.blit(self.assetdict[element["text"]],self.textToPos([element["space"][0],element["space"][1]]))
             elif element["type"] == "image":
                 if self.assetdict.get(element["image"]) is None:
@@ -1670,7 +1945,16 @@ class Notebook:
                         except Exception:
                             self.assetdict.update({element["image"] + element["execute"]+str(self.imirror)+str(element["position"]):Button(self.textToPos(element["position"][0]),self.textToPos(element["position"][1]),Game.errorSurf)}) # for future jes WHY DID YOU MAKE SETTING A BUTTON'S X AND Y POS LIKE THIS GRRAAAAHHHH
                 if self.assetdict[element["image"]+element["execute"]+str(self.imirror)+str(element["position"])].draw(surface=self.pagesurf,surfacex=self.pages[self.active]["frame"][0]+self.listpos[0],surfacey=self.pages[self.active]["frame"][1]+self.listpos[1]):
+                    try:
+                        if element.get("sfx") == None:
+                            pygame.mixer.Sound.play(self.pages[self.active]["modifiers"]["buttonsounds"]["default"]) # TODO: Make different buttons in a page have different sounds.
+                        else:
+                            pygame.mixer.Sound.play(self.pages[self.active]["modifiers"]["buttonsounds"][element["sfx"]])
+                    except Exception:
+                        pass # This is a quick addition, please forgive me for doing it this way.
                     exec(element["execute"])
+            elif element["type"] == "dragable":
+                pass # TODO: Implement dragables as a patch for 1.0.1 ASAP.
             elif element["type"] == "list":
                 backuppagesurf = self.pagesurf.copy()
                 self.pagesurf = pygame.Surface(element["renderarea"]).convert_alpha()
@@ -1691,20 +1975,23 @@ class Notebook:
                 self.pagesurf = backuppagesurf
 
     def draw(self):
+        self.stopRendering = False
         try:
             self.pagesurf.fill(self.pages[self.active]["bgcol"])
         except Exception:
             print("Invalid page color - filling with white.")
             self.pagesurf.fill((255,255,255))
         for component in self.pages[self.active]["elements"]:
-            #try:
-            self.pageParse(component)
-            #except Exception:
-            #    print("An element could not be rendered.")
+            try:
+                self.pageParse(component)
+            except Exception:
+                if Game.debug != True:
+                    print("An element could not be rendered.")
+                else:
+                    raise Exception()
         return self.pagesurf,(self.pages[self.active]["frame"][0],self.pages[self.active]["frame"][1]),self.offset
 
-NotebookObj = Notebook.loadFromJSON(Notebook(),"assets/definitions/notebook/default.json")
-NotebookObj.setActive("base.base.default")
+NotebookObj = Notebook()
 
 WINDOW.blit(smallboldfont.render("UI frontend ready, terminal ready",True,(255,255,255)),(0,48))
 pygame.display.update()
@@ -1811,7 +2098,7 @@ class ArmorShop():
                 self.activearmor = i
                 text = armortable[i][2]
                 self.textobj.textlist = [] # this is probably the worst fucking way to do this but new additions are new additions
-                self.textobj.add(text)
+                self.textobj.add(text,(270,700))
         if self.activearmor != -1:
             pygame.draw.rect(WINDOW,(55,55,55),(960 * scaleW,0 * scaleH,360 * scaleW,720 * scaleH))
             pygame.draw.rect(WINDOW,(255,255,255), pygame.Rect(960 * scaleH,0 * scaleW,1 * scaleH,720 * scaleW))
@@ -1999,7 +2286,7 @@ class WeaponShop():
             except Exception:
                 text = weapontable[self.chosentype][1][self.chosenweapon][2]
             self.textobj.textlist = []
-            self.textobj.add(str(text))
+            self.textobj.add(str(text),(270,700))
             pygame.draw.rect(WINDOW,(55,55,55),(960 * scaleW,0 * scaleH,360 * scaleW,720 * scaleH))
             pygame.draw.rect(WINDOW,(255,255,255), pygame.Rect(960 * scaleH,0 * scaleW,1 * scaleH,720 * scaleW))
             WINDOW.blit(font.render(weapontable[self.chosentype][1][self.chosenweapon][0],True,(255,255,255)),(970*scaleW,4*scaleH))
@@ -2160,14 +2447,14 @@ class BadgeShop():
                 pygame.mixer.Sound.play(Sounds.listscrollsfx)
                 self.activebadge = i
                 self.textobj.textlist = []
-                self.textobj.add(badgetable[i][2])
+                self.textobj.add(badgetable[i][2],(270,700))
         if self.activebadge != -1:
             pygame.draw.rect(WINDOW,(55,55,55),(960 * scaleW,0 * scaleH,360 * scaleW,720 * scaleH))
             pygame.draw.rect(WINDOW,(255,255,255), pygame.Rect(960 * scaleH,0 * scaleW,1 * scaleH,720 * scaleW))
             WINDOW.blit(font.render(badgetable[self.activebadge][0],True,(255,255,255)),(970*scaleW,4*scaleH))
             pygame.draw.line(WINDOW,(255,255,255),(970*scaleW,32*scaleH),(1270*scaleW,32*scaleH))
             WINDOW.blit(self.textobj.draw(),(970*scaleW,36*scaleH))
-            pygame.draw.line(WINDOW,(255,255,255),(970*scaleW,(self.textobj.lastsize[1] + 38)*scaleH),(1270*scaleW,(self.textobj.lastsize[1] + 38)*scaleH))
+            pygame.draw.line(WINDOW,(255,255,255),(970*scaleW,(self.textobj.lastsize[1] +64)*scaleH),(1270*scaleW,(self.textobj.lastsize[1] + 64)*scaleH))
             if self.buybtn.draw():
                 if party.partymembers[0].gold >= badgetable[self.activebadge][4]:
                     party.partymembers[0].gold -= badgetable[self.activebadge][4]
@@ -2186,35 +2473,36 @@ class BadgeShop():
             # Rendering badge effect descriptions.
             text = badgetable[self.activebadge][7]
             self.desctextobj.textlist = [] # this is probably the worst fucking way to do this but new additions are new additions
-            self.desctextobj.add(text)
+            self.desctextobj.add(text,(270,700))
             # Rendering the stats.
             statsrendered = 0
             i = 0 # it's a bit late at night when i'm coding this; we doing this this way
                     # i = current stat we're at
                     # j = index in PlayerBadgeStats; which shouldn't excede 1 and due to this is useable to check mainPlayer.Badges
-            WINDOW.blit(self.desctextobj.draw(),(968,(self.textobj.lastsize[1] + 40) * scaleH))
-            dtext = self.desctextobj.lastsize[1] + self.textobj.lastsize[1] - 32
+            WINDOW.blit(self.desctextobj.draw(),(968,(self.textobj.lastsize[1] + 68) * scaleH))
+            dtext = self.desctextobj.lastsize[1] + self.textobj.lastsize[1] - 8
+            # 2026-01-24: past jes what were you on when making this and can i have a whiff
             for stat in badgetable[self.activebadge][5]:
                 if stat != 0:
                     for j in range(len(self.PlayerBadgeStats)):
-                        WINDOW.blit(Icons.stats[i],(968 + j * 128,(90 + dtext + statsrendered * 32) * scaleH))
+                        WINDOW.blit(Icons.stats[i],(968 + j * 128,(114 + dtext + statsrendered * 32) * scaleH))
                         statText = font.render(str(stat),True,(255,255,255))
-                        WINDOW.blit(statText,(986 + j * 128,(84 + dtext + statsrendered * 32) * scaleH)) # NOTE: altered this a bit, get it into armortable
+                        WINDOW.blit(statText,(986 + j * 128,(108 + dtext + statsrendered * 32) * scaleH)) # NOTE: altered this a bit, get it into armortable
                         statTextRect = statText.get_rect()
                         try:
                             if stat > self.PlayerBadgeStats[j][i]:
-                                WINDOW.blit(Icons.stats[6],((statTextRect.bottomright[0] + 996 + j * 128) * scaleW,(90 + dtext + statsrendered * 32) * scaleH))
+                                WINDOW.blit(Icons.stats[6],((statTextRect.bottomright[0] + 996 + j * 128) * scaleW,(114 + dtext + statsrendered * 32) * scaleH))
                             elif stat < self.PlayerBadgeStats[j][i]:
-                                WINDOW.blit(Icons.stats[7],((statTextRect.bottomright[0] + 996 + j * 128) * scaleW,(90 + dtext + statsrendered * 32) * scaleH))
+                                WINDOW.blit(Icons.stats[7],((statTextRect.bottomright[0] + 996 + j * 128) * scaleW,(114 + dtext + statsrendered * 32) * scaleH))
                         except Exception:
                             # same as the exception with the badges
-                            WINDOW.blit(Icons.stats[6],((statTextRect.bottomright[0] + 996 + j * 128) * scaleW,(90 + dtext + statsrendered * 32) * scaleH))
+                            WINDOW.blit(Icons.stats[6],((statTextRect.bottomright[0] + 996 + j * 128) * scaleW,(114 + dtext + statsrendered * 32) * scaleH))
                     statsrendered += 1
                 i += 1
             i = 0
-            for badge in party.partymembers[0].badges:
-                if badge != "None" and badgetable[self.activebadge][5] != (0,0,0,0,0,0):
-                    WINDOW.blit(smallboldfont.render(badge,True,(255,255,255)), ((968 + i * 128) * scaleW, (dtext + 80 + statsrendered * 32) * scaleH))
+            for i in range(2):
+                if party.partymembers[0].badges[i] != "None" and badgetable[self.activebadge][5] != (0,0,0,0,0,0):
+                    WINDOW.blit(smallboldfont.render(party.partymembers[0].badges[i],True,(255,255,255)), ((968 + i * 128) * scaleW, (dtext + 80 + statsrendered * 32) * scaleH))
                 i += 1
             WINDOW.blit(font.render("Price: " + str(badgetable[self.activebadge][4]),True,(255,255,255)),(984*scaleW, 522*scaleH))
             WINDOW.blit(font.render("Your Nuggets: " + str(party.partymembers[0].gold),True,(255,255,255)),(984*scaleW, 546*scaleH))
@@ -2363,7 +2651,8 @@ class DialogueBox():
     # for trigger: True is Spacebar, False is timeout; timeout is in some value i gotta fix
     # TODO: fix timeout
     # TODO: also fix this up a little i mean it works but GOD is it ugly :(
-    def __init__(self,dialogue="",charportrait="assets/urpg-guy.png",iconcharportrait="assets/gameicon.png",type="basic",timeout=60,expression="neutral",character="unknown",linkto=[],velocity=20,soundfile=Sounds.listscrollsfx,termdraw=True):
+    # 2026-02-23: Same thing as with DialogueTree. Remake inminent. (AKA when I have to touch this again)
+    def __init__(self,dialogue="",charportrait="assets/urpg-guy.png",iconcharportrait="assets/gameicon.png",type="basic",timeout=60,expression="neutral",character="unknown",linkto=[],velocity=20,soundfile=Sounds.listscrollsfx,termdraw=True,bchoices={}):
         self.charportrait = pygame.image.load(charportrait).convert_alpha()
         self.charportraitrect = self.charportrait.get_rect()
         self.iconcharportrait = iconcharportrait # we're not using it for now
@@ -2372,6 +2661,8 @@ class DialogueBox():
         self.timeout = timeout * Game.dt
         self.choice = False
         self.linkto = linkto
+        self.choices = bchoices # Hey, future Jes? Fix some things around here, please. This doesn't work.
+                          # oh HELL no i am NOT touching this today TODO: Change all DialogueBox instances to work through Dictionaries instead of old legacy bullcrap. I mean, really, this is HELLISH in nature. PTB 1.1.1 Jes, fix this, thanks.
         self.expression = expression
         self.character = character
         self.velocity = velocity
@@ -2400,8 +2691,10 @@ class DialogueBox():
                 pygame.draw.rect(WINDOW,(55,55,55),(960 * scaleW,0 * scaleH,360 * scaleW,720 * scaleH))
                 pygame.draw.rect(WINDOW,(255,255,255), pygame.Rect(960 * scaleH,0 * scaleW,1 * scaleH,720 * scaleW))
                 i = 0
+                print(self.linkto)
                 for link in self.linkto:
-                    WINDOW.blit(font.render("[" + str(i + 1) + "] " + link,True,(255,255,255)),(970,10 + i * 24))
+                    print(self.choices)
+                    WINDOW.blit(font.render("[" + str(i + 1) + "] " + self.choices[link],True,(255,255,255)),(970,10 + i * 24))
                     i += 1
             for event in Game.eventqueue:
                 if self.type == "select":
@@ -2432,9 +2725,13 @@ class DialogueTree():
         self.hasreported = False
         self.textobj = TextEng()
     def draw(self):
+        # TODO: What the fuck is this mess. Why did I do this. Fix this now.
+        # 2026-02-04: I should just remake this module. I swear, what's this TextEng usage? Why do we use it sometimes but not others?
+        # Past me was a nearsighted fool. And it's ironic I'm saying that because I'm also one, quite literally.
+        # 2026-02-23: PTB 1.0.1 has been delayed way too much due to this module (and some other shennanigans), this is 300% getting rewritten for PTB 1.1.0.
         self.textobj.textlist = []
         if self.hasreported == False:
-            self.textobj.add("[N]" + self.dialogueboxes[self.current].dialogue,space=(276,700),noNL=True) # this is stupid
+            self.textobj.add(self.dialogueboxes[self.current].dialogue,space=(240,700),noNL=True) # this is stupid AND CAUSED A BUG
             for i in range(len(self.textobj.textlist)):
                 if line[0] == "NL":
                     continue
@@ -2468,7 +2765,11 @@ class DialogueTree():
                         if box['type'] != 'select':
                             self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],soundfile=self.chars[box['char']]['soundfile']))
                         else:
-                            self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],box['linkto'],soundfile=self.chars[box['char']]['soundfile']))
+                            #try:
+                                choices = {str(value):str(value).removeprefix("[\'") for value in box['linkto']} # Also for future Jes; just make an AddBox method and don't duplicate code, for Pete's sake.
+                                self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],box['linkto'],soundfile=self.chars[box['char']]['soundfile'],bchoices=choices))
+                            #except Exception:
+                            #    self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],soundfile=self.chars[box['char']]['soundfile']))
                 self.current = 0
                 self.hasreported = False
             if self.current >= len(self.dialogueboxes):
@@ -2494,13 +2795,14 @@ class DialogueTree():
             for expression in self.chars[char]['expressions']:
                 self.chars[char]['loadedexpressions'].append(self.chars[char]['filepath']+self.chars[char]['expressions'][expression]) # Currently useless. TODO: find a way to make this work; should optimize a bit
             for iconexpression in self.chars[char]['iconexpressions']:
-                self.chars[char]['loadediconexpressions'].append(self.chars[char]['filepath']+self.chars[char]['iconexpressions'][expression]) # Currently useless. TODO: find a way to make this work; should optimize a bit
+                self.chars[char]['loadediconexpressions'].append(self.chars[char]['filepath']+self.chars[char]['iconexpressions'][iconexpression]) # Currently useless. TODO: find a way to make this work; should optimize a bit
         self.dialoguepaths = decoding['dialogue']
         for box in self.dialoguepaths['init']:
             if box['type'] != 'select':
                 self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],soundfile=self.chars[box['char']]['soundfile']))
             else:
-                self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],box['linkto'],soundfile=self.chars[box['char']]['soundfile']))
+                choices = {str(value):str(self.dialoguepaths.get(value)).removeprefix("[\'") for value in box['linkto']} # Also for future Jes; just make an AddBox method and don't duplicate code, for Pete's sake.
+                self.dialogueboxes.append(DialogueBox(TextFixer(box['diag']),self.chars[box['char']]['filepath']+self.chars[box['char']]['expressions'][box['expression']],self.chars[box['char']]['filepath']+self.chars[box['char']]['iconexpressions'][box['expression']],box['type'],box['timeout'],box['expression'],box['char'],box['linkto'],soundfile=self.chars[box['char']]['soundfile'],bchoices=choices))
         self.active = False
         self.current = 0
         self.hasreported = False
@@ -2516,6 +2818,7 @@ class ShopLinker():
         # NOTE: in the future this above approach probably shouldn't be done but here I go doing it AGAIN
         # TODO: ALSO i should probably separate static unanimated parts from the animated ones to reduce RAM cost
         self.counter = pygame.image.load("assets/shop/general/background/counter.png")
+        self.radio = [pygame.image.load("assets/shop/general/radio/radio_base.png"),pygame.image.load("assets/shop/general/radio/radio_speaker.png")]
         self.diagoptions = diagoptions
         self.linkto = linkto
         self.diagoptions.append("Save")
@@ -2542,6 +2845,8 @@ class ShopLinker():
             WINDOW.blit(self.counter)
             pygame.draw.rect(WINDOW,(55,55,55),(960 * scaleW,0 * scaleH,360 * scaleW,720 * scaleH))
             pygame.draw.rect(WINDOW,(255,255,255), pygame.Rect(960 * scaleH,0 * scaleW,1 * scaleH,720 * scaleW))
+            WINDOW.blit(self.radio[0],(30,500))
+            WINDOW.blit(self.radio[1],(30,500)) # TODO: get music frequency and scale based on that
             if isinstance(self.linkto[self.state],DialogueTree):
                 dg = self.linkto[self.state].draw()
                 if not dg[0]:
@@ -2577,18 +2882,21 @@ class ShopLinker():
                 elif self.linkto[self.state] == "Exit":
                     Game.state = "Rooms"
                     Game.substate = ""
-                    pygame.mixer.music.fadeout(300)
+                    pygame.mixer.music.fadeout(600)
                     TerminalObj.textlist = []
-                    self.__init__(diagoptions=self.diagoptions[:-2],linkto=self.linkto[:-2],dialogue=self.dialogue)
+                    self.__init__(diagoptions=self.diagoptions[:-2],linkto=self.linkto[:-2],dialogue=self.dialogue) # this causes A SECOND OF LAG. fix this for 1.1
             #except Exception:
                 #self.state = -1 # Fallback.
         if pygame.mixer.music.get_busy() == False and Game.state == "Shop":
-            if random.randint(1,100) > 66:
+            randnum = random.randint(0,100)
+            if randnum > 75:
                 pygame.mixer.music.load("ost/shopexci1.wav")
-            elif random.randint(1,100) > 50:
+            elif randnum > 50:
                 pygame.mixer.music.load("ost/shopexci2.wav")
-            elif random.randint(1,100) > 33:
-                pygame.mixer.music.load("ost/shopexci1.wav")
+            elif randnum > 26:
+                pygame.mixer.music.load("ost/shopexci3.wav")
+            elif randnum > 1:
+                pygame.mixer.music.load("ost/shopsedyzz.mp3") #TODO: lower quality
             else:
                 pygame.mixer.music.load("ost/shopjes.wav")
             pygame.mixer.music.play(-1)
@@ -3867,9 +4175,10 @@ class Debug:
     inputbuffer = ""
     cmdlist = [("help","for cmd in self.cmdlist: TerminalObj.add(str(cmd[0]) + \": \" + str(cmd[2]))","Prints out a list of all available commands."),
                ("exit","exit()","Quits out of the game."),
-               ("changeState","Game.state = str([-0-])","Changes the Game's state. You shouldn\'t mess with it too much."),
+               ("changeState","Game.state = [-0-]","Changes the Game's state. You shouldn\'t mess with it too much."),
                ("disableCmdErrorHandler","self.crashhandling = False;TerminalObj.add(\"Error handling disabled.\")","Disables any crash handling for commands. YOU SHOULD NOT TURN THIS ON."),
-               ("getVar","TerminalObj.add([-0-])","Gets a value.")]
+               ("getVar","TerminalObj.add([-0-])","Gets a value."),
+               ("exec","exec([-0-])","Executes arbitrary code. Don't run anything you've been told to just paste in here...")]
     crashhandling = True
     def cmds(self,input):
         input = str(input)
@@ -3893,6 +4202,7 @@ class Debug:
                     return 1
                 except Exception:
                     if self.crashhandling == False:
+                        print("Crash context:", finishedcmd)
                         raise(Exception)
                     TerminalObj.add("An error has occurred executing command " + input + ".")
                     return 0
@@ -4188,6 +4498,7 @@ def menu():
                     sys.exit()
                 elif Menu.selector == 0:
                     Game.state = "Shop"
+                    RoomManagerObj.changeRoom("base.PTB.wave","assets/definitions/rooms/wavebased.json")
                     pygame.mixer.music.stop()
                     return("ENTER")
                 elif Menu.selector == 1:
@@ -4341,6 +4652,9 @@ def main():
     # TODO: Clean this up, please. This is ugly as all hell, and could frankly do with a few recodes and fixes!
     global maag
     global enemyHolder
+    if party.loaded == False:
+        party.save()
+        Game.state = "Shop" # NOTE: Shitty shitty bypass just so we can load without a savefile! Bad!
     enemyHolder.enemies = [Enemy() for i in range(random.randint(1,3))]
     enemyHolder.refresh()
     looping = True
@@ -4585,7 +4899,7 @@ def main():
             TerminalObj.textlist = []
         for event in Game.eventqueue:
             if event.type == QUIT:
-                exit()
+                sys.exit()
             if event.type == KEYDOWN and event.key == K_F3 and Game.debug == True:
                 Game.cheatstates['dbgOpen'] = not Game.cheatstates['dbgOpen']
 
@@ -4600,7 +4914,7 @@ def main():
             for partymember in party.partymembers:
                 offset = 10
                 if i == Battle.turn:
-                    offset = 0
+                    offset = 0                    
                 pygame.draw.rect(WINDOW,(30,30,30),((6+ 288*i) * scaleW,(464+ offset) * scaleH,278 * scaleW, (56-offset) * scaleH))
                 pygame.draw.rect(WINDOW,(255,255,255),((12+ 288*i) * scaleW,(470+ offset) * scaleH,266 * scaleW, (50-offset) * scaleH))
                 mcdholder = maximum_common_divisor(4,partymember.hpmax)
@@ -4642,7 +4956,7 @@ def main():
             Game.state = "Loss"
             Game.substate = ""
             DodgeObj.moves = []
-            TerminalObj.add("You lost...")
+            TerminalObj.add("You lost...[NL]")
             TerminalObj.add("Press [/SPACE/][N] to reload your save file.")
             pygame.mixer.Sound.fadeout(Battle.music,333)
             DodgeObj.__init__()
@@ -4658,7 +4972,7 @@ def main():
                 oldhp = party.partymembers[i].hp
                 party.partymembers[i].hp += random.randint(10,30)
                 party.partymembers[i].hpbaraltpos += party.partymembers[i].hp - oldhp
-                TerminalObj.add(party.partymembers[i].name + "recovered " + str(party.partymembers[i].hp-oldhp) + " HP.")
+                TerminalObj.add(party.partymembers[i].name + " recovered " + str(party.partymembers[i].hp-oldhp) + " HP.")
             TerminalObj.add("You win!")
             party.partymembers[0].gold += enemyHolder.gold 
             TerminalObj.add("Got " + str(enemyHolder.gold) + " Nuggets.")
@@ -4699,14 +5013,20 @@ while True:
         InputGather()
         for event in Game.eventqueue:
             if event.type == QUIT:
-                exit()
-        RoomObjData = RoomHandler.draw()
+                sys.exit()
+        RoomObjData = RoomManagerObj.draw()
         WINDOW.blit(RoomObjData[0],RoomObjData[1]) # apparently one can't unpack a tuple into WINDOW.blit. or at least I couldn't. idk can someone try and save some ram
         WINDOW.blit(TerminalObj.draw(decopos=(10,10)),(960,0))
         if NoteInfo.openNotebookButton.draw():
             if Game.substate != "Notebook":
+                pygame.mixer.Sound.play(Sounds.notebookopensfx)
                 Game.substate = "Notebook"
+                if NotebookObj.active != "base.base.invPage":
+                    if NotebookObj.pages.get("base.base.invPage") == None:
+                        NotebookObj.loadFromJSON("assets/definitions/notebook/inventory.json")
+                    NotebookObj.setActive("base.base.invPage")
             else:
+                pygame.mixer.Sound.play(Sounds.notebookclosesfx)
                 Game.substate = ""
         if Game.substate == "Notebook": # TODO: pause game while in notebook UI
             data = NotebookObj.draw()

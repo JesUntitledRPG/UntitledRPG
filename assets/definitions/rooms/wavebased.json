@@ -1,0 +1,116 @@
+{
+    "type":"URPGRoom",
+    "name":"base.PTB.wave",
+    "formatver":3,
+    "startpos":[1,1],
+    "size":[960,720],
+    "tilesize":40,
+    "mapAssets":{
+        "audio":{
+            "thickletTheme":"ost/thickletVERYEARLY.ogg"
+        }
+    },
+    "exits":{
+
+    },
+    "tilesets":
+        {
+            "Grass":{
+                "nnn": {
+                        "path":"assets/wavebased/images/wipGrass.png",
+                        "hitbox":[0,0,0,0]
+                        },
+                "sec": {
+                        "path":"assets/wavebased/images/wipGrass.png",
+                        "hitbox":[0,0,0,0]
+                        },
+                "sic": {
+                        "path":"assets/wavebased/images/wipGrass.png",
+                        "hitbox":[0,0,0,0]
+                        },
+                "sen": {
+                        "path":"assets/wavebased/images/wipGrass.png",
+                        "hitbox":[0,0,0,0]
+                        }
+                    },
+            "Wood":{
+                "nnn":{
+                    "path":"assets/wavebased/images/wipWood.png",
+                    "hitbox":[0,0,0,0]
+                },
+                "sen":{
+                    "path":"assets/wavebased/images/wipWood.png",
+                    "hitbox":[0,0,0]
+                }
+            }
+        },
+    "details":
+        {
+            "shopStand":"assets/wavebased/images/shopmk1.png",
+            "battleMachine":"assets/wavebased/images/waveTerm.png",
+            "testflower":"assets/testdetail.png"
+        },
+    "playerrenderlayer":2,
+    "layers":[
+        {
+            "type":0,
+            "cmds":[
+                {
+                    "tile":"Grass",
+                    "rects":[[0,0,32,24]]
+                }
+            ]
+        },
+        {
+            "type":0,
+            "cmds":[
+                {
+                    "tile":"Wood",
+                    "rects":[[3,2,4,7]]
+                }
+            ]
+        },
+        {
+            "type":1,
+            "cmds":[
+                {
+                    "detail":"shopStand",
+                    "positions":[[155,110]]
+                },
+                {
+                    "detail":"battleMachine",
+                    "positions":[[500,110]]
+                }
+            ]
+        }
+    ],
+    "entities":[
+        {
+            "type":"runtime",
+            "activateby":[],
+            "runtimelogic":"if self.extraAssets[\"audio\"][\"thickletTheme\"].get_num_channels() < 1: self.extraAssets[\"audio\"][\"thickletTheme\"].play(loops=-1)"
+        },
+        {
+            "type":"trigger",
+            "activateby":[{"collision":[145,250,140,130]}],
+            "exdata":[""],
+            "hitbox":[0,0,120,160],
+            "pos":[155,140],
+            "execute":"if Game.inputs[\"kAccept\"][\"justDown\"] is True: Game.state = \"Shop\";self.extraAssets[\"audio\"][\"thickletTheme\"].fadeout(500)"
+        },
+        {
+            "type":"trigger",
+            "activateby":[{"collision":[460,150,240,60]}],
+            "exdata":[""],
+            "hitbox":[0,0,160,80],
+            "pos":[500,110],
+            "execute":"if Game.inputs[\"kAccept\"][\"justDown\"] is True: NotebookObj.loadFromJSON(\"assets/definitions/rooms/pages/waveMachine.json\");NotebookObj.setActive(\"base.wavebased.waveMachine\");Game.substate = \"Notebook\""
+        }
+
+    ],
+    "bgCol":[255,255,255],
+    "saveIcon":"",
+    "author":"The Untitled Team & The Untitled RPG Game Contributors",
+    "mods":["base"],
+    "gamever":"PTB1"
+}

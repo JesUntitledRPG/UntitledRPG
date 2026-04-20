@@ -23,7 +23,7 @@
         },
         {
             "type":"button",
-            "image":"$STSCR:rendersurf=pygame.Surface((160,160)).convert_alpha();rendersurf.fill((255,0,0));temptexteng = TextEng();temptexteng.add(\"click here to go to invpage\",(160,160));rendersurf.blit(temptexteng.draw((160,160)));del temptexteng;self.imgdata=rendersurf.copy();del rendersurf",
+            "image":"$STSCR:rendersurf=pygame.Surface((160,160)).convert_alpha();rendersurf.fill((255,0,0));temptexteng = TextEng();temptexteng.add(\"click here to go to invpage\",(100,100));rendersurf.blit(temptexteng.draw((100,100)));del temptexteng;self.imgdata=rendersurf.copy();del rendersurf",
             "execute":"self.loadFromJSON(\"assets/definitions/notebook/inventory.json\");self.setActive(\"base.base.invPage\")",
             "position":[0,0]
         }
